@@ -1,0 +1,64 @@
+#+STYLE: <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+
+#+TITLE: Clojure Training
+
+* Intro to Functional Programming with Clojure
+
+** What is functional programming
+
+   Functions are first class objects
+   - It can be created on demand.
+   - It can be stored in a data structure.
+   - It can be passed as an argument to a function.
+   - It can be returned as the value of a function.
+
+** Higher order functions
+
+** Anonymous Functions
+
+** Functional composition
+
+** Pure functions and immutablilty
+
+** Map Reduce Filter
+
+
+* Intoduction to Clojure
+
+** What is Clojure
+
+** Advantages of Clojure
+
+** Disadvantages of Clojure
+
+** Installing Clojure
+
+** Tooling
+
+* Basic Clojure Syntax and REPL
+
+** Lisp syntax
+
+** The REPL
+
+** Leiningen
+
+** Code execution and Project Structure
+
+* Clojure Namespaces
+
+** What is a namespace?
+** The 'user' namespace
+** Using code in other namespaces
+** require, use, and import
+** Reloading namespaces
+** The namespace declaration
+
+* Working with Java Code & Clojure
+
+** Importing Java packages
+** Using static class members
+** Creating objects
+** Calling instance methods
+   
+
