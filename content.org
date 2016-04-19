@@ -61,4 +61,56 @@
 ** Creating objects
 ** Calling instance methods
    
+* More Clojure Syntax
+
+** Execution (do, doseq, dotimes)
+** Conditionals (if, cond, condp, case)
+** Iteration (while, for, loop)
+** Recursion
+** Tail recursion
+** Exception handling
+** Destructuring
+** Using :keys and :or Named arguments
+
+* Macros
+
+** Exploring Macros
+** Creating our Own Macros
+** Using Templating to Create Macros
+
+* Data Structures
+** The four basic structures:
+** lists
+** vectors
+** maps
+** sets
+** Sequences
+** Lazy Sequences
+** Operations on sequences (eg map, reduce, filter)
+** Design Considerations for Clojure programming
+
+Polymorphism
+Protocols
+Defining and using Types
+Defining and using Records
+Handling Java with interop
+
+Intro to Concurency
+
+
+Intro to Web Programming with Clojure
+Ring
+Compojure
+Other foundational libraries
+
+
+Day 5
+Web Programming with Clojure (contd)
+Restful Services with Clojure
+HTML Templating library
+REST API library
+State Management in projects
+Clojurescript introduction (optional)
+Deployment
+
 
