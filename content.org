@@ -1,46 +1,144 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-
+#+STYLE: <link rel="stylesheet" type="text/css" href="custom.css" />
 #+TITLE: Clojure Training
 
 * Intro to Functional Programming with Clojure
 
 ** What is functional programming
-
    Functions are first class objects
-   - It can be created on demand.
-   - It can be stored in a data structure.
-   - It can be passed as an argument to a function.
-   - It can be returned as the value of a function.
+    - It can be created on demand.
+    - It can be stored in a data structure.
+    - It can be passed as an argument to a function.
+    - It can be returned as the value of a function.
+
+*** Why do we need functional programming?
+
+    
+    In computer science, functional programming is a programming paradigm style of building the structure and elements of computer programs that treats computation as the evaluation of
+    mathematical functions and avoids changing-state and mutable data.
+
+    Functional programming makes it easy to implement distributed/parallel computing.
+    
+    Moore's law for computing hardware is fluctuating. Processors are not getting faster anymore.
+    More efficient computing is achieved by adding more cores.
+
 
 ** Higher order functions
-
+   Functions that can take functions or values as an input and return a new function or functions as output.
+   
 ** Anonymous Functions
-
+   Anonymous functtions are functions without an identity or a name.
+   These type of functions are commonly used as callbacks for an event where no other reference is needed.
+   Another use case for anonymous functions is using it as a filter for a data set or applying a functional transformation for a set of data
+   
 ** Functional composition
+   "Function Composition" is applying one function to the results of another.
+   You can have a pipe line of functions through which data is passed through. And this pipe line can be termed as a new function.
+   You can create a new function from a set of functions.
 
 ** Pure functions and immutablilty
 
+   Pure function is a function which has no side effects. It does not depend on any external entities.
+   For every input, there is only one out put
+   Example: Area of a circle = pi*r*r
+   
+   Examples of impure functions: current time, or time related functions. Database operations. File operations or reading data from an external API
+   
+   
 ** Map Reduce Filter
 
+   Map reduce is a programming model. A map reduce approach helps in distributed computing.
+
+*** Map
+    Common syntax:
+    
+    map->function->data set
+
+    Outputs a set of data
+    
+    Function in a map accepts a value or another function.
+
+    Example case: Increment every value in an array by one
+
+    syntax: map increment-function array
+   
+*** Reduce
+    Common syntax:
+
+    reduce->function <optional initial value> -> data set
+    
+    Reduce function accepts two values, previous value and next value
+    Returns a single output entity which is a reduced form of dataset
+    
+    
 
 * Intoduction to Clojure
 
 ** What is Clojure
-
+   Clojure is a general purpose, compiled, dynamic, functional programming language.
+   Clojure is a member of the Lisp family of languages.
+   Lisp was a revolutionary programming language which first appeared in 1958 and was too advanced at that time.
+   Lisp was originally created as a practical mathematical notation for computer programs, influenced by lambda calculus
+   
 ** Advantages of Clojure
-
+   - Clojure is simple. *Simple is elegant, simple is beautiful.*
+   - Clojure uses lesser lines of code. Anywhere between 10-20x lesser lines of code than Java.
+   - Clojure is a Lisp. *Code is Data*
+   - Clojure is functional *Functional programming will be a necessary programming model in the near future*
+   - Clojure supports true concurrent models
+   - Clojure REPL helps in interactive development
+   - Clojure runs on JVM
+     It can take advantage of highly optimized JVM and its garbage collector. It can utilize Java libraries
+   - Clojure can be used as a replacement for javascript in the front end
+   
+   
+   
 ** Disadvantages of Clojure
-
+   - Major shift in programming model.
+   - Lisp syntax is different and some people never gets it.
+   - Relatively new technology. Released in 2007 and fewer libraries and developers
+   
 ** Installing Clojure
+   Using Leiningen http://leiningen.org/
+   
+   1. Download the lein script (or on Windows lein.bat)
+   2. Place it on your $PATH where your shell can find it (eg. ~/bin)
+   3. Set it to be executable (chmod a+x ~/bin/lein)
+   4. Run it (lein) and it will download the self-install package
+   
+     #+BEGIN_SRC bash
+     lein new <project-name>
+     #+END_SRC
+   This command will start a new project
 
 ** Tooling
 
+*** IDE
+    Clojure syntax is very simple that you don't actually need an IDE. You can do Clojure development in a simple text editor.
+    
+    Recommended editors/IDE:
+    
+    1. Emacs: *Unlimited awesomeness* https://www.gnu.org/software/emacs/
+       Emacs is built with a Lisp. Highly customizable. Steeper learning curve.
+    2. Cursive: *For the software engineer* https://cursive-ide.com/
+    3. Eclipse + Counterclockwise *For the enterprise developer who is already working on Java* http://doc.ccw-ide.org/documentation.html
+    
+    
 * Basic Clojure Syntax and REPL
 
 ** Lisp syntax
-
+   Clojure is a homoiconic language, which means Clojure code itself is a data (list). Clojure code is executed by evaluating a data structure. Clojure code can modify, transform and create other Clojure programs.
+   *Programs creating programs.*
+   Recommended Reading for more enlightenment: http://clojure.org/reference/reader
+   
 ** The REPL
-
+   *The Read Eval Print Loop* 
+   Clojure REPL is an interactive shell which can be connected to a running program and modifications can be made and tested on a live program.
+   
+   Staring a REPL
+   
+   
+   
 ** Leiningen
 
 ** Code execution and Project Structure
