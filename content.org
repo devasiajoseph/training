@@ -316,10 +316,32 @@
    
    
 ** maps
+   {:key value}
 ** sets
+   Sets
+
+Sets are collections of unique values.
+
+There is literal support for hash-sets:
+
+#{:a :b :c :d}
+-> #{:d :a :b :c}
+You can create sets with the hash-set and sorted-set functions:
+
+(hash-set :a :b :c :d)
+-> #{:d :a :b :c}
+
+(sorted-set :a :b :c :d)
+-> #{:a :b :c :d}
+You can also get a set of the values in a collection using the set function:
+
+
 ** Sequences
+   
+   A logical list
 ** Lazy Sequences
 ** Operations on sequences (eg map, reduce, filter)
+   
 ** Design Considerations for Clojure programming
    
 * Polymorphism
