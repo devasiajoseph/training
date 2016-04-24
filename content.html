@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Clojure Training"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2016-04-22T12:55+0530"/>
+<meta name="generated" content="2016-04-23T16:45+0530"/>
 <meta name="author" content="devasia"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -60,8 +60,8 @@
                                  font-weight:bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="custom.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/custom.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -148,15 +148,20 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-2">2.2 Advantages of Clojure</a></li>
 <li><a href="#sec-2-3">2.3 Disadvantages of Clojure</a></li>
 <li><a href="#sec-2-4">2.4 Installing Clojure</a></li>
-<li><a href="#sec-2-5">2.5 Tooling</a></li>
+<li><a href="#sec-2-5">2.5 Tooling</a>
+<ul>
+<li><a href="#sec-2-5-1">2.5.1 IDE</a></li>
+</ul></li>
 </ul>
 </li>
 <li><a href="#sec-3">3 Basic Clojure Syntax and REPL</a>
 <ul>
 <li><a href="#sec-3-1">3.1 Lisp syntax</a></li>
 <li><a href="#sec-3-2">3.2 The REPL</a></li>
-<li><a href="#sec-3-3">3.3 Leiningen</a></li>
-<li><a href="#sec-3-4">3.4 Code execution and Project Structure</a></li>
+<li><a href="#sec-3-3">3.3 Code execution and Project Structure</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1 Source code</a></li>
+</ul></li>
 </ul>
 </li>
 <li><a href="#sec-4">4 Clojure Namespaces</a>
@@ -207,6 +212,29 @@ for the JavaScript code in this tag.
 <li><a href="#sec-8-7">8.7 Lazy Sequences</a></li>
 <li><a href="#sec-8-8">8.8 Operations on sequences (eg map, reduce, filter)</a></li>
 <li><a href="#sec-8-9">8.9 Design Considerations for Clojure programming</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9 Polymorphism</a>
+<ul>
+<li><a href="#sec-9-1">9.1 Protocols</a></li>
+<li><a href="#sec-9-2">9.2 Defining and using Types</a></li>
+<li><a href="#sec-9-3">9.3 Defining and using Records</a></li>
+<li><a href="#sec-9-4">9.4 Handling Java with interop</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10 Intro to Concurency</a></li>
+<li><a href="#sec-11">11 Intro to Web Programming with Clojure</a>
+<ul>
+<li><a href="#sec-11-1">11.1 Ring</a></li>
+<li><a href="#sec-11-2">11.2 Compojure</a></li>
+<li><a href="#sec-11-3">11.3 Other foundational libraries</a></li>
+<li><a href="#sec-11-4">11.4 Web Programming with Clojure (contd)</a></li>
+<li><a href="#sec-11-5">11.5 Restful Services with Clojure</a></li>
+<li><a href="#sec-11-6">11.6 HTML Templating library</a></li>
+<li><a href="#sec-11-7">11.7 REST API library</a></li>
+<li><a href="#sec-11-8">11.8 State Management in projects</a></li>
+<li><a href="#sec-11-9">11.9 Clojurescript introduction (optional)</a></li>
+<li><a href="#sec-11-10">11.10 Deployment</a></li>
 </ul>
 </li>
 </ul>
@@ -280,7 +308,7 @@ for the JavaScript code in this tag.
 
 <p>   Anonymous functtions are functions without an identity or a name.
    These type of functions are commonly used as callbacks for an event where no other reference is needed.
-   Anothe use case for anonymous functions is using it as a filter for a data set or applying a functional transformation for a set of data
+   Another use case for anonymous functions is using it as a filter for a data set or applying a functional transformation for a set of data
 </p>
 </div>
 
@@ -480,6 +508,30 @@ for the JavaScript code in this tag.
 
 
 </div>
+
+<div id="outline-container-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> IDE</h4>
+<div class="outline-text-4" id="text-2-5-1">
+
+<p>    Clojure syntax is very simple that you don't actually need an IDE. You can do Clojure development in a simple text editor.
+</p>
+<p>    
+    Recommended editors/IDE:
+</p>
+<ol>
+<li>Emacs: <b>Unlimited awesomeness</b> <a href="https://www.gnu.org/software/emacs/">https://www.gnu.org/software/emacs/</a>
+       Emacs is built with a Lisp. Highly customizable. Steeper learning curve.
+</li>
+<li>Cursive: <b>For the software engineer</b> <a href="https://cursive-ide.com/">https://cursive-ide.com/</a>
+</li>
+<li>Eclipse + Counterclockwise <b>For the enterprise developer who is already working on Java</b> <a href="http://doc.ccw-ide.org/documentation.html">http://doc.ccw-ide.org/documentation.html</a>
+</li>
+</ol>
+
+
+
+</div>
+</div>
 </div>
 
 </div>
@@ -496,7 +548,10 @@ for the JavaScript code in this tag.
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> Lisp syntax</h3>
 <div class="outline-text-3" id="text-3-1">
 
-
+<p>   Clojure is a homoiconic language, which means Clojure code itself is a data (list). Clojure code is executed by evaluating a data structure. Clojure code can modify, transform and create other Clojure programs.
+   <b>Programs creating programs.</b>
+   Recommended Reading for more enlightenment: <a href="http://clojure.org/reference/reader">http://clojure.org/reference/reader</a>
+</p>
 </div>
 
 </div>
@@ -505,25 +560,79 @@ for the JavaScript code in this tag.
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> The REPL</h3>
 <div class="outline-text-3" id="text-3-2">
 
+<p>   <b>The Read Eval Print Loop</b> 
+   Clojure REPL is an interactive shell which can be connected to a running program and modifications can be made and tested on a live program.
+</p>
+<p>   
+   Staring a REPL
+</p>
+<p>   
+   cd into your project folder
+</p>
+
+
+<pre class="example">lein repl
+</pre>
+
+
 
 </div>
 
 </div>
 
 <div id="outline-container-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Leiningen</h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Code execution and Project Structure</h3>
 <div class="outline-text-3" id="text-3-3">
 
 
-</div>
+<p>
+    Creating a project:
+</p>
+
+
+
+<pre class="example">lein new &lt;project-name&gt;
+</pre>
+
+
+<p>    
+    Running a project 
+</p>
+
+
+
+<pre class="example">lein run
+</pre>
+
+
+<p>
+    The "main" entry point will be executed.
+</p>
+<p>
+    The main entry point is defined in the project.clj file in the project folder {:main tutorial.core}
+</p>
+<p>    
+    Clojure code is organized similar to JAVA projects
+</p>
+
 
 </div>
 
-<div id="outline-container-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> Code execution and Project Structure</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Source code</h4>
+<div class="outline-text-4" id="text-3-3-1">
 
-
+<p>    Source code path is defined in project as {:source-paths ["src/clj"]}
+    It is a common practice to put all the clojure source code inside "src/clj". 
+</p>
+<p>    
+    Clojure project may contain java source code or clojurescript source code. They will be put inside "src/java" or "src/cljs" directories.
+</p>
+<p>
+    Java source code path must be defined using the key :java-source-paths
+    Java source code path example :java-source-paths ["src/java"]
+</p>
+</div>
 </div>
 </div>
 
@@ -535,11 +644,31 @@ for the JavaScript code in this tag.
 
 
 
+
 </div>
 
 <div id="outline-container-4-1" class="outline-3">
 <h3 id="sec-4-1"><span class="section-number-3">4.1</span> What is a namespace?</h3>
 <div class="outline-text-3" id="text-4-1">
+
+
+<p>   
+   Namespace is a structural identity of a source code file.
+</p>
+<ul>
+<li>What def does
+</li>
+<li>What namespaces are and how to use them
+</li>
+<li>The relationship between namespaces and the filesystem
+</li>
+<li>How to use refer, alias, require, use, and ns
+</li>
+<li>How to organize Clojure projects using the filesystem
+</li>
+</ul>
+
+
 
 </div>
 
@@ -549,6 +678,8 @@ for the JavaScript code in this tag.
 <h3 id="sec-4-2"><span class="section-number-3">4.2</span> The 'user' namespace</h3>
 <div class="outline-text-3" id="text-4-2">
 
+<p>   When you start the REPL, for example, you are in the user namespac
+</p>
 </div>
 
 </div>
@@ -556,6 +687,16 @@ for the JavaScript code in this tag.
 <div id="outline-container-4-3" class="outline-3">
 <h3 id="sec-4-3"><span class="section-number-3">4.3</span> Using code in other namespaces</h3>
 <div class="outline-text-3" id="text-4-3">
+
+<ul>
+<li>require (strict)
+</li>
+<li>use (import everything into this namespace)
+</li>
+<li>refer (refer particular functions only)
+</li>
+</ul>
+
 
 </div>
 
@@ -565,6 +706,7 @@ for the JavaScript code in this tag.
 <h3 id="sec-4-4"><span class="section-number-3">4.4</span> require, use, and import</h3>
 <div class="outline-text-3" id="text-4-4">
 
+
 </div>
 
 </div>
@@ -572,6 +714,8 @@ for the JavaScript code in this tag.
 <div id="outline-container-4-5" class="outline-3">
 <h3 id="sec-4-5"><span class="section-number-3">4.5</span> Reloading namespaces</h3>
 <div class="outline-text-3" id="text-4-5">
+
+
 
 </div>
 
@@ -581,14 +725,15 @@ for the JavaScript code in this tag.
 <h3 id="sec-4-6"><span class="section-number-3">4.6</span> The namespace declaration</h3>
 <div class="outline-text-3" id="text-4-6">
 
-
+<p>   (ns directory-path.filename)
+</p>
 </div>
 </div>
 
 </div>
 
 <div id="outline-container-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> Working with Java Code &amp; Clojure</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> Working with Java Code &amp; Clojure</h2>
 <div class="outline-text-2" id="text-5">
 
 
@@ -641,6 +786,21 @@ for the JavaScript code in this tag.
 <h3 id="sec-6-1"><span class="section-number-3">6.1</span> Execution (do, doseq, dotimes)</h3>
 <div class="outline-text-3" id="text-6-1">
 
+
+
+
+<pre class="example">(do  something)
+</pre>
+
+
+
+
+
+<pre class="example">(doseq [each all]
+  (do-something each))
+</pre>
+
+
 </div>
 
 </div>
@@ -648,6 +808,11 @@ for the JavaScript code in this tag.
 <div id="outline-container-6-2" class="outline-3">
 <h3 id="sec-6-2"><span class="section-number-3">6.2</span> Conditionals (if, cond, condp, case)</h3>
 <div class="outline-text-3" id="text-6-2">
+
+
+<p>   
+   (if test then else?) or (if test then)
+</p>
 
 </div>
 
@@ -657,6 +822,14 @@ for the JavaScript code in this tag.
 <h3 id="sec-6-3"><span class="section-number-3">6.3</span> Iteration (while, for, loop)</h3>
 <div class="outline-text-3" id="text-6-3">
 
+
+
+
+<pre class="example">(while condition
+(do-somthing))
+</pre>
+
+
 </div>
 
 </div>
@@ -664,6 +837,30 @@ for the JavaScript code in this tag.
 <div id="outline-container-6-4" class="outline-3">
 <h3 id="sec-6-4"><span class="section-number-3">6.4</span> Recursion</h3>
 <div class="outline-text-3" id="text-6-4">
+
+<p>   Factorial Example:
+</p>
+
+
+
+<pre class="example"> (defn fact[x]
+(if (&lt;= x 1) 1 (* x  (fact (- x 1))  )))
+</pre>
+
+
+<p>
+   Use recursion only when no other way is possible. Most of the time you can use <b>reduce</b> operation to attain the same result
+</p>
+<p>
+   Alternate way of implementing factorial without recursion:
+</p>
+
+
+
+<pre class="example">(defn fact[n]
+(if (= 0 n) 1 (reduce * (range 1 (inc n)))))
+</pre>
+
 
 </div>
 
@@ -673,6 +870,22 @@ for the JavaScript code in this tag.
 <h3 id="sec-6-5"><span class="section-number-3">6.5</span> Tail recursion</h3>
 <div class="outline-text-3" id="text-6-5">
 
+<p>   Factorial example:
+</p>
+
+
+
+<pre class="example">(defn fact [x]
+ (loop [n x f 1]
+     (if (= n 1)
+         f
+         (recur (dec n) (* f n)))))
+</pre>
+
+
+<p>   
+   Clojure will do tail-call optimization for this; that ensures that you will never run into StackOverflowErrors.
+</p>
 </div>
 
 </div>
@@ -680,6 +893,22 @@ for the JavaScript code in this tag.
 <div id="outline-container-6-6" class="outline-3">
 <h3 id="sec-6-6"><span class="section-number-3">6.6</span> Exception handling</h3>
 <div class="outline-text-3" id="text-6-6">
+
+
+<p>   
+   The exprs are evaluated and, if no exceptions occur, the value of the last
+   is returned. If an exception occurs and catch clauses are provided, each is
+   examined in turn and the first for which the thrown exception is an instance
+   of the named class is considered a matching catch clause
+</p>
+
+
+
+<pre class="example">(try
+  (/ 1 0)
+  (catch Exception e (str "caught exception: " (.getMessage e))))
+</pre>
+
 
 </div>
 
@@ -689,6 +918,8 @@ for the JavaScript code in this tag.
 <h3 id="sec-6-7"><span class="section-number-3">6.7</span> Destructuring</h3>
 <div class="outline-text-3" id="text-6-7">
 
+
+
 </div>
 
 </div>
@@ -696,6 +927,7 @@ for the JavaScript code in this tag.
 <div id="outline-container-6-8" class="outline-3">
 <h3 id="sec-6-8"><span class="section-number-3">6.8</span> Using :keys and :or Named arguments</h3>
 <div class="outline-text-3" id="text-6-8">
+
 
 
 </div>
@@ -715,6 +947,15 @@ for the JavaScript code in this tag.
 <h3 id="sec-7-1"><span class="section-number-3">7.1</span> Exploring Macros</h3>
 <div class="outline-text-3" id="text-7-1">
 
+<p>   The number one rule of Macros: <b>Don't use macros</b>
+</p>
+<p>
+   Most of the problems can be solved using functional programming. Use macros only if you need to create a DSL
+   like a query language for a particular Database or a very specific functionality set that is repeated very often.
+</p>
+<p>
+   99% of the time you don't need macros
+</p>
 </div>
 
 </div>
@@ -723,6 +964,7 @@ for the JavaScript code in this tag.
 <h3 id="sec-7-2"><span class="section-number-3">7.2</span> Creating our Own Macros</h3>
 <div class="outline-text-3" id="text-7-2">
 
+
 </div>
 
 </div>
@@ -730,6 +972,7 @@ for the JavaScript code in this tag.
 <div id="outline-container-7-3" class="outline-3">
 <h3 id="sec-7-3"><span class="section-number-3">7.3</span> Using Templating to Create Macros</h3>
 <div class="outline-text-3" id="text-7-3">
+
 
 
 </div>
@@ -756,13 +999,20 @@ for the JavaScript code in this tag.
 <h3 id="sec-8-2"><span class="section-number-3">8.2</span> lists</h3>
 <div class="outline-text-3" id="text-8-2">
 
-</div>
+<p>   Everything is a list. Even clojure source code is a list
+</p></div>
 
 </div>
 
 <div id="outline-container-8-3" class="outline-3">
 <h3 id="sec-8-3"><span class="section-number-3">8.3</span> vectors</h3>
 <div class="outline-text-3" id="text-8-3">
+
+<p>   Similar to arrays.
+</p>
+<p>   
+   Example:
+</p>
 
 </div>
 
@@ -813,34 +1063,148 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-8-9">
 
 
-<p>
-Polymorphism
-Protocols
-Defining and using Types
-Defining and using Records
-Handling Java with interop
-</p>
-<p>
-Intro to Concurency
-</p>
+</div>
+</div>
 
-<p>
-Intro to Web Programming with Clojure
-Ring
-Compojure
-Other foundational libraries
-</p>
+</div>
 
-<p>
-Day 5
-Web Programming with Clojure (contd)
-Restful Services with Clojure
-HTML Templating library
-REST API library
-State Management in projects
-Clojurescript introduction (optional)
-Deployment
-</p>
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Polymorphism</h2>
+<div class="outline-text-2" id="text-9">
+
+
+</div>
+
+<div id="outline-container-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Protocols</h3>
+<div class="outline-text-3" id="text-9-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> Defining and using Types</h3>
+<div class="outline-text-3" id="text-9-2">
+
+</div>
+
+</div>
+
+<div id="outline-container-9-3" class="outline-3">
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> Defining and using Records</h3>
+<div class="outline-text-3" id="text-9-3">
+
+</div>
+
+</div>
+
+<div id="outline-container-9-4" class="outline-3">
+<h3 id="sec-9-4"><span class="section-number-3">9.4</span> Handling Java with interop</h3>
+<div class="outline-text-3" id="text-9-4">
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Intro to Concurency</h2>
+<div class="outline-text-2" id="text-10">
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Intro to Web Programming with Clojure</h2>
+<div class="outline-text-2" id="text-11">
+
+
+</div>
+
+<div id="outline-container-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Ring</h3>
+<div class="outline-text-3" id="text-11-1">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> Compojure</h3>
+<div class="outline-text-3" id="text-11-2">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-3" class="outline-3">
+<h3 id="sec-11-3"><span class="section-number-3">11.3</span> Other foundational libraries</h3>
+<div class="outline-text-3" id="text-11-3">
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-11-4" class="outline-3">
+<h3 id="sec-11-4"><span class="section-number-3">11.4</span> Web Programming with Clojure (contd)</h3>
+<div class="outline-text-3" id="text-11-4">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-5" class="outline-3">
+<h3 id="sec-11-5"><span class="section-number-3">11.5</span> Restful Services with Clojure</h3>
+<div class="outline-text-3" id="text-11-5">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-6" class="outline-3">
+<h3 id="sec-11-6"><span class="section-number-3">11.6</span> HTML Templating library</h3>
+<div class="outline-text-3" id="text-11-6">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-7" class="outline-3">
+<h3 id="sec-11-7"><span class="section-number-3">11.7</span> REST API library</h3>
+<div class="outline-text-3" id="text-11-7">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-8" class="outline-3">
+<h3 id="sec-11-8"><span class="section-number-3">11.8</span> State Management in projects</h3>
+<div class="outline-text-3" id="text-11-8">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-9" class="outline-3">
+<h3 id="sec-11-9"><span class="section-number-3">11.9</span> Clojurescript introduction (optional)</h3>
+<div class="outline-text-3" id="text-11-9">
+
+</div>
+
+</div>
+
+<div id="outline-container-11-10" class="outline-3">
+<h3 id="sec-11-10"><span class="section-number-3">11.10</span> Deployment</h3>
+<div class="outline-text-3" id="text-11-10">
+
+
 
 </div>
 </div>
@@ -848,7 +1212,7 @@ Deployment
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2016-04-22T12:55+0530</p>
+<p class="date">Date: 2016-04-23T16:45+0530</p>
 <p class="author">Author: devasia</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

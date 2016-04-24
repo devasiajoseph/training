@@ -1,5 +1,5 @@
-#+STYLE: <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-#+STYLE: <link rel="stylesheet" type="text/css" href="custom.css" />
+#+STYLE: <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css" />
+#+STYLE: <link rel="stylesheet" type="text/css" href="css/custom.css" />
 #+TITLE: Clojure Training
 
 * Intro to Functional Programming with Clojure
@@ -122,7 +122,7 @@
        Emacs is built with a Lisp. Highly customizable. Steeper learning curve.
     2. Cursive: *For the software engineer* https://cursive-ide.com/
     3. Eclipse + Counterclockwise *For the enterprise developer who is already working on Java* http://doc.ccw-ide.org/documentation.html
-    
+       
     
 * Basic Clojure Syntax and REPL
 
@@ -137,22 +137,73 @@
    
    Staring a REPL
    
+   cd into your project folder
+    #+BEGIN_SRC bash
+     lein repl
+    #+END_SRC
    
    
-** Leiningen
-
 ** Code execution and Project Structure
 
+    Creating a project:
+    
+     #+BEGIN_SRC bash
+      lein new <project-name>
+      #+END_SRC
+    
+    Running a project 
+
+     #+BEGIN_SRC bash
+      lein run
+     #+END_SRC
+
+    The "main" entry point will be executed.
+
+    The main entry point is defined in the project.clj file in the project folder {:main tutorial.core}
+    
+    Clojure code is organized similar to JAVA projects
+    
+
+*** Source code
+    Source code path is defined in project as {:source-paths ["src/clj"]}
+    It is a common practice to put all the clojure source code inside "src/clj". 
+    
+    Clojure project may contain java source code or clojurescript source code. They will be put inside "src/java" or "src/cljs" directories.
+
+    Java source code path must be defined using the key :java-source-paths
+    Java source code path example :java-source-paths ["src/java"]
+     
 * Clojure Namespaces
-
+  
+  
 ** What is a namespace?
-** The 'user' namespace
-** Using code in other namespaces
-** require, use, and import
-** Reloading namespaces
-** The namespace declaration
+   
+   Namespace is a structural identity of a source code file.
+   
+   - What def does
+   - What namespaces are and how to use them
+   - The relationship between namespaces and the filesystem
+   - How to use refer, alias, require, use, and ns
+   - How to organize Clojure projects using the filesystem
 
-* Working with Java Code & Clojure
+   
+** The 'user' namespace
+   When you start the REPL, for example, you are in the user namespac
+   
+** Using code in other namespaces
+   - require (strict)
+   - use (import everything into this namespace)
+   - refer (refer particular functions only)
+   
+** require, use, and import
+   
+** Reloading namespaces
+   
+   
+** The namespace declaration
+   (ns directory-path.filename)
+   
+* TODO Working with Java Code & Clojure
 
 ** Importing Java packages
 ** Using static class members
@@ -162,53 +213,136 @@
 * More Clojure Syntax
 
 ** Execution (do, doseq, dotimes)
+    #+BEGIN_SRC clojure
+       (do  something)
+    #+END_SRC
+   
+   #+BEGIN_SRC clojure
+   (doseq [each all]
+     (do-something each))
+   #+END_SRC
+     
 ** Conditionals (if, cond, condp, case)
-** Iteration (while, for, loop)
-** Recursion
-** Tail recursion
-** Exception handling
-** Destructuring
-** Using :keys and :or Named arguments
+   #+BEGIN_SRC clojure
+   (if test then else?) 
+   #+END_SRC
+   
+   OR
+   
+   #+BEGIN_SRC clojure
+   (if test then)
+   #+END_SRC
 
+** Iteration (while, for, loop)
+   #+BEGIN_SRC clojure
+(while condition
+(do-somthing))
+   #+END_SRC
+   
+** Recursion
+   Factorial Example:
+   
+   #+BEGIN_SRC clojure
+   (defn fact[x]
+  (if (<= x 1) 1 (* x  (fact (- x 1))  )))
+   #+END_SRC
+
+   Use recursion only when no other way is possible. Most of the time you can use *reduce* operation to attain the same result
+
+   Alternate way of implementing factorial without recursion:
+
+   #+BEGIN_SRC clojure
+(defn fact[n]
+(if (= 0 n) 1 (reduce * (range 1 (inc n)))))
+   #+END_SRC
+   
+** Tail recursion
+   Factorial example:
+
+   #+BEGIN_SRC clojure
+   (defn fact [x]
+    (loop [n x f 1]
+        (if (= n 1)
+            f
+            (recur (dec n) (* f n)))))
+   #+END_SRC
+   
+   Clojure will do tail-call optimization for this; that ensures that you will never run into StackOverflowErrors.
+   
+** Exception handling
+   
+   The exprs are evaluated and, if no exceptions occur, the value of the last
+   is returned. If an exception occurs and catch clauses are provided, each is
+   examined in turn and the first for which the thrown exception is an instance
+   of the named class is considered a matching catch clause
+   
+   #+BEGIN_SRC clojure
+   (try
+     (/ 1 0)
+     (catch Exception e (str "caught exception: " (.getMessage e))))
+   #+END_SRC
+   
+** Destructuring
+   
+   
+** Using :keys and :or Named arguments
+   
+   
 * Macros
 
 ** Exploring Macros
-** Creating our Own Macros
-** Using Templating to Create Macros
+   The number one rule of Macros: *Don't use macros*
 
+   Most of the problems can be solved using functional programming. Use macros only if you need to create a DSL
+   like a query language for a particular Database or a very specific functionality set that is repeated very often.
+
+   99% of the time you don't need macros
+ 
+** Creating our Own Macros
+   
+** Using Templating to Create Macros
+   
+   
 * Data Structures
 ** The four basic structures:
 ** lists
+   Everything is a list. Even clojure source code is a list
+   
+   
 ** vectors
+   Similar to arrays.
+   
+   Example:
+   
+   
 ** maps
 ** sets
 ** Sequences
 ** Lazy Sequences
 ** Operations on sequences (eg map, reduce, filter)
 ** Design Considerations for Clojure programming
+   
+* Polymorphism
+** Protocols
+** Defining and using Types
+** Defining and using Records
+** Handling Java with interop
 
-Polymorphism
-Protocols
-Defining and using Types
-Defining and using Records
-Handling Java with interop
-
-Intro to Concurency
-
-
-Intro to Web Programming with Clojure
-Ring
-Compojure
-Other foundational libraries
+* Intro to Concurency
 
 
-Day 5
-Web Programming with Clojure (contd)
-Restful Services with Clojure
-HTML Templating library
-REST API library
-State Management in projects
-Clojurescript introduction (optional)
-Deployment
+* Intro to Web Programming with Clojure
+** Ring
+** Compojure
+** Other foundational libraries
+
+
+** Web Programming with Clojure (contd)
+** Restful Services with Clojure
+** HTML Templating library
+** REST API library
+** State Management in projects
+** Clojurescript introduction (optional)
+** Deployment
 
 
