@@ -188,7 +188,7 @@
 
    
 ** The 'user' namespace
-   When you start the REPL, for example, you are in the user namespac
+   When you start the REPL, for example, you are in the user namespace
    
 ** Using code in other namespaces
    - require (strict)
@@ -196,6 +196,15 @@
    - refer (refer particular functions only)
    
 ** require, use, and import
+
+   #+BEGIN_SRC clojure
+   (ns myproject.core
+    (:use [clojure.core] :reload)
+    (:require [clojure.string :as str :refer [replace]] :reload-all))
+
+    (str/replace "foo" #"o" "e")
+   "fee"
+   #+END_SRC
    
 ** Reloading namespaces
    
