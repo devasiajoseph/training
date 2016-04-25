@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="title" content="Clojure Training"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2016-04-23T16:45+0530"/>
+<meta name="generated" content="2016-04-25T09:15+0530"/>
 <meta name="author" content="devasia"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -678,7 +678,7 @@ for the JavaScript code in this tag.
 <h3 id="sec-4-2"><span class="section-number-3">4.2</span> The 'user' namespace</h3>
 <div class="outline-text-3" id="text-4-2">
 
-<p>   When you start the REPL, for example, you are in the user namespac
+<p>   When you start the REPL, for example, you are in the user namespace
 </p>
 </div>
 
@@ -707,6 +707,18 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-4-4">
 
 
+
+
+
+<pre class="example">(ns myproject.core
+ (:use [clojure.core] :reload)
+ (:require [clojure.string :as str :refer [replace]] :reload-all))
+
+ (str/replace "foo" #"o" "e")
+"fee"
+</pre>
+
+
 </div>
 
 </div>
@@ -715,6 +727,18 @@ for the JavaScript code in this tag.
 <h3 id="sec-4-5"><span class="section-number-3">4.5</span> Reloading namespaces</h3>
 <div class="outline-text-3" id="text-4-5">
 
+
+
+
+<pre class="example">user=&gt; (use '[clojure.tools.namespace.repl :only (refresh)])
+
+user=&gt; (refresh)
+
+:reloading (namespace.app)
+
+:ok
+
+</pre>
 
 
 </div>
@@ -769,6 +793,7 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-5-4">
 
 
+
 </div>
 </div>
 
@@ -789,6 +814,8 @@ for the JavaScript code in this tag.
 
 
 
+
+
 <pre class="example">(do  something)
 </pre>
 
@@ -796,8 +823,15 @@ for the JavaScript code in this tag.
 
 
 
+
 <pre class="example">(doseq [each all]
   (do-something each))
+</pre>
+
+
+
+
+<pre class="example">(dotimes [n 5] (println "n is" n))
 </pre>
 
 
@@ -810,9 +844,21 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-6-2">
 
 
+
+
+<pre class="example">(if test then else?) 
+</pre>
+
+
 <p>   
-   (if test then else?) or (if test then)
+   OR
 </p>
+
+
+
+<pre class="example">(if test then)
+</pre>
+
 
 </div>
 
@@ -825,8 +871,33 @@ for the JavaScript code in this tag.
 
 
 
+
 <pre class="example">(while condition
 (do-somthing))
+</pre>
+
+
+<p>
+<b>for</b>
+</p>
+<p>
+List comprehension. Takes a vector of one or more
+ binding-form/collection-expr pairs, each followed by zero or more
+ modifiers, and yields a lazy sequence of evaluations of expr.
+ Collections are iterated in a nested fashion, rightmost fastest,
+ and nested coll-exprs can refer to bindings created in prior
+ binding-forms.  Supported modifiers are: :let [binding-form expr &hellip;],
+ :while test, :when test.
+ (take 100 (for [x (range 100000000) y (range 1000000) :while (&lt; y x)] [x y]))
+</p>
+
+
+
+<pre class="example">(for [x [0 1 2 3 4 5]
+      :let [y (* x 3)]
+      :when (even? y)]
+  y)
+
 </pre>
 
 
@@ -920,6 +991,17 @@ for the JavaScript code in this tag.
 
 
 
+
+
+<pre class="example">user=&gt; (def point [5 7])
+#'user/point
+
+user=&gt; (let [[x y] point]
+         (println "x:" x "y:" y))
+x: 5 y: 7
+</pre>
+
+
 </div>
 
 </div>
@@ -1000,7 +1082,9 @@ for the JavaScript code in this tag.
 <div class="outline-text-3" id="text-8-2">
 
 <p>   Everything is a list. Even clojure source code is a list
-</p></div>
+</p>
+
+</div>
 
 </div>
 
@@ -1022,13 +1106,37 @@ for the JavaScript code in this tag.
 <h3 id="sec-8-4"><span class="section-number-3">8.4</span> maps</h3>
 <div class="outline-text-3" id="text-8-4">
 
-</div>
+<p>   {:key value}
+</p></div>
 
 </div>
 
 <div id="outline-container-8-5" class="outline-3">
 <h3 id="sec-8-5"><span class="section-number-3">8.5</span> sets</h3>
 <div class="outline-text-3" id="text-8-5">
+
+<p>   Sets
+</p>
+<p>
+Sets are collections of unique values.
+</p>
+<p>
+There is literal support for hash-sets:
+</p>
+<p>
+#{:a :b :c :d}
+-&gt; #{:d :a :b :c}
+You can create sets with the hash-set and sorted-set functions:
+</p>
+<p>
+(hash-set :a :b :c :d)
+-&gt; #{:d :a :b :c}
+</p>
+<p>
+(sorted-set :a :b :c :d)
+-&gt; #{:a :b :c :d}
+You can also get a set of the values in a collection using the set function:
+</p>
 
 </div>
 
@@ -1038,7 +1146,10 @@ for the JavaScript code in this tag.
 <h3 id="sec-8-6"><span class="section-number-3">8.6</span> Sequences</h3>
 <div class="outline-text-3" id="text-8-6">
 
-</div>
+
+<p>   
+   A logical list
+</p></div>
 
 </div>
 
@@ -1053,6 +1164,7 @@ for the JavaScript code in this tag.
 <div id="outline-container-8-8" class="outline-3">
 <h3 id="sec-8-8"><span class="section-number-3">8.8</span> Operations on sequences (eg map, reduce, filter)</h3>
 <div class="outline-text-3" id="text-8-8">
+
 
 </div>
 
@@ -1212,7 +1324,7 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="postamble">
-<p class="date">Date: 2016-04-23T16:45+0530</p>
+<p class="date">Date: 2016-04-25T09:15+0530</p>
 <p class="author">Author: devasia</p>
 <p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
 <a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>

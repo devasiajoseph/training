@@ -207,7 +207,16 @@
    #+END_SRC
    
 ** Reloading namespaces
-   
+   #+BEGIN_SRC bash
+user=> (use '[clojure.tools.namespace.repl :only (refresh)])
+
+user=> (refresh)
+
+:reloading (namespace.app)
+
+:ok
+
+#+END_SRC
    
 ** The namespace declaration
    (ns directory-path.filename)
@@ -219,16 +228,25 @@
 ** Creating objects
 ** Calling instance methods
    
+
 * More Clojure Syntax
 
 ** Execution (do, doseq, dotimes)
+   
+   
     #+BEGIN_SRC clojure
        (do  something)
     #+END_SRC
    
+   
    #+BEGIN_SRC clojure
    (doseq [each all]
      (do-something each))
+   #+END_SRC
+
+
+   #+BEGIN_SRC clojure
+    (dotimes [n 5] (println "n is" n))
    #+END_SRC
      
 ** Conditionals (if, cond, condp, case)
@@ -243,10 +261,30 @@
    #+END_SRC
 
 ** Iteration (while, for, loop)
+   
    #+BEGIN_SRC clojure
 (while condition
 (do-somthing))
    #+END_SRC
+
+*for*
+
+List comprehension. Takes a vector of one or more
+ binding-form/collection-expr pairs, each followed by zero or more
+ modifiers, and yields a lazy sequence of evaluations of expr.
+ Collections are iterated in a nested fashion, rightmost fastest,
+ and nested coll-exprs can refer to bindings created in prior
+ binding-forms.  Supported modifiers are: :let [binding-form expr ...],
+ :while test, :when test.
+ (take 100 (for [x (range 100000000) y (range 1000000) :while (< y x)] [x y]))
+
+#+BEGIN_SRC clojure
+(for [x [0 1 2 3 4 5]
+      :let [y (* x 3)]
+      :when (even? y)]
+  y)
+
+#+END_SRC
    
 ** Recursion
    Factorial Example:
@@ -292,10 +330,33 @@
    #+END_SRC
    
 ** Destructuring
+
+#+BEGIN_SRC bash
+user=> (def point [5 7])
+#'user/point
+
+user=> (let [[x y] point]
+         (println "x:" x "y:" y))
+x: 5 y: 7
+#+END_SRC
    
+** Using keys and or Named arguments
    
-** Using :keys and :or Named arguments
-   
+#+BEGIN_SRC clojure
+
+   (keys map)
+
+#+END_SRC
+
+Returns all keys of the map
+
+
+Logical operators
+
+(and cond1 cond2 ....)
+
+
+(or cond1 cond2 ....)
    
 * Macros
 
@@ -306,28 +367,57 @@
    like a query language for a particular Database or a very specific functionality set that is repeated very often.
 
    99% of the time you don't need macros
+
+
+   
  
 ** Creating our Own Macros
    
+   Macro definitions look much like function definitions.
+   They have a name, an optional document string, an argument list, and a body.
+   The body will almost always return a list.
+   This makes sense because macros are a way of transforming a data structure into a form Clojure can evaluate, and Clojure uses lists to represent function calls, special form calls, and macro calls.
+   You can use any function, macro, or special form within the macro body, and you call macros just like you would a function or special form.
+
+   #+BEGIN_SRC clojure
+   (defmacro infix
+    [infixed]
+     (list (second infixed) (first infixed) (last infixed)))
+   #+END_SRC
+
+
+#+BEGIN_SRC clojure
+
+(infix (1 + 1))
+; => 2
+
+#+END_SRC
+
+
+
+   
 ** Using Templating to Create Macros
    
+   Use: list quote..etc
    
 * Data Structures
 ** The four basic structures:
 ** lists
    Everything is a list. Even clojure source code is a list
    
+   enclosed in a ()
    
 ** vectors
    Similar to arrays.
    
    Example:
-   
+   [1 2 3 4 5]
    
 ** maps
+   
    {:key value}
+   
 ** sets
-   Sets
 
 Sets are collections of unique values.
 
@@ -348,10 +438,25 @@ You can also get a set of the values in a collection using the set function:
 ** Sequences
    
    A logical list
+   
 ** Lazy Sequences
+
+   
 ** Operations on sequences (eg map, reduce, filter)
+
+   (map function sequence)
+
+   (reduce function sequence)
+
+
+   (filter function sequence)
    
 ** Design Considerations for Clojure programming
+   
+   - Keep it simple
+   - Most of the time use pure functions
+   - Avoid mutable states
+   - Avoid circular dependencies
    
 * Polymorphism
 ** Protocols
@@ -364,16 +469,44 @@ You can also get a set of the values in a collection using the set function:
 
 * Intro to Web Programming with Clojure
 ** Ring
+   HTTP server abstraction
+   
 ** Compojure
+   
+   URL Routing specification
+   
 ** Other foundational libraries
+
+   ring middleware
+   html templating
+   database drivers and orms
+   time functions
+   validators
+
 
 
 ** Web Programming with Clojure (contd)
+   Programming session
+   
 ** Restful Services with Clojure
+   Programming session
+   
 ** HTML Templating library
+   Introduction to selmer
+   
 ** REST API library
+   
+   Introduction to liberator
+
 ** State Management in projects
+   Mount and Component
+   
 ** Clojurescript introduction (optional)
+   
+   
 ** Deployment
+   Deploying as a standalone app
+   Deploying to tomcat
+   Deploying to wildfly (jboss)
 
 
