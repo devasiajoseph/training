@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://devcenter.heroku.com/articles/clojure-web-application -->
+<html lang="en" class=" js flexbox flexboxlegacy hashchange history rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Building a Database-Backed Clojure Web Application | Heroku Dev Center</title>
+  <link href="https://d2f2p26ywennn8.cloudfront.net/assets/favicon-82f8669f6323129704e02b6db377deaa68f30823915273d895c95d323692fc91.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+
+    <link rel="alternate" type="application/atom+xml" title="Heroku Recent Articles" href="http://feeds.feedburner.com/herokudevcenterarticles">
+    <link rel="alternate" type="application/atom+xml" title="Heroku Changelog" href="http://feeds.feedburner.com/herokuchangelog">
+  <link rel="search" type="application/opensearchdescription+xml" title="Heroku Dev Center" href="https://devcenter.heroku.com/opensearch.xml">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<script type="text/javascript" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/277498ec79"></script><script type="text/javascript" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/pd.js"></script><script src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/nr-918.min.js"></script><script src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/js"></script><script type="text/javascript" async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/i.js"></script><script type="text/javascript" async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/linkid.js"></script><script type="text/javascript" async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/conversion_async.js"></script><script type="text/javascript" async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/51b6483a434bba0f0c000016.js"></script><script type="text/javascript" async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/analytics.js"></script><script async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/gtm.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"277498ec79","applicationID":"7135218","transactionName":"JQxeQ0peWVVTQ01UExIKU1tdQhpKXl4V","queueTime":1,"applicationTime":119,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(e,t){return function(){o(e,[(new Date).getTime()].concat(a(arguments)),null,t)}}var o=e("handle"),i=e(2),a=e(3);"undefined"==typeof window.newrelic&&(newrelic=NREUM);var u=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit"],c=["addPageAction"],f="api-";i(u,function(e,t){newrelic[t]=r(f+t,"api")}),i(c,function(e,t){newrelic[t]=r(f+t)}),t.exports=newrelic,newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),o("err",[e,(new Date).getTime()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(0>o?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?u(e,a,i):i()}function n(n,r,o){e&&e(n,r,o);for(var i=t(o),a=l(n),u=a.length,c=0;u>c;c++)a[c].apply(i,r);var s=f[g[n]];return s&&s.push([m,n,r,i]),i}function p(e,t){w[e]=l(e).concat(t)}function l(e){return w[e]||[]}function d(e){return s[e]=s[e]||o(n)}function v(e,t){c(e,function(e,n){t=t||"feature",g[n]=t,t in f||(f[t]=[])})}var w={},g={},m={on:p,emit:n,get:d,listeners:l,context:t,buffer:v};return m}function i(){return new r}var a="nr@context",u=e("gos"),c=e(2),f={},s={},p=t.exports=o();p.backlog=f},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!w++){var e=v.info=NREUM.info,t=s.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&t){c(l,function(t,n){e[t]||(e[t]=n)});var n="https"===p.split(":")[0]||e.sslForHttp;v.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=v.proto+e.agent,t.parentNode.insertBefore(r,t)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=e("handle"),c=e(2),f=window,s=f.document;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:f.XMLHttpRequest,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},e(1);var p=""+location,l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-918.min.js"},d=window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent),v=t.exports={offset:a(),origin:p,features:{},xhrWrappable:d};s.addEventListener?(s.addEventListener("DOMContentLoaded",i,!1),f.addEventListener("load",r,!1)):(s.attachEvent("onreadystatechange",o),f.attachEvent("onload",r)),u("mark",["firstbyte",a()],null,"api");var w=0},{}]},{},["loader"]);</script>
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="00keUH85ehwCvuyx1CclL7LDeFwQVZVc6jRomghQCiE=" name="csrf-token">
+
+  
+
+  <meta name="description" content="Create a database-backed Clojure web application and deploy it to the Heroku Cedar stack.">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@herokudevcenter">
+    <meta name="twitter:title" content="Building a Database-Backed Clojure Web Application | Heroku Dev Center">
+    <meta name="twitter:description" content="Create a database-backed Clojure web application and deploy it to the Heroku Cedar stack.">
+
+  <meta name="google-site-verification" content="V3T3n-QnyNOZlSVZgEfdXaKkJKyfw2yIP55nR00C8ZU">
+
+
+  <link href="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/public-f624912faf2a7a9582a71a7a3d5b22b4cbdeeca5a8a7f446445fd8d8fbac8616.css" media="screen, print" rel="stylesheet">
+  
+<script type="text/javascript" async="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/tagjs"></script><script type="text/javascript" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/analytics"></script></head>
+<body>
+<div class="page-wrapper">
+<header><div class="gradient-primary gradient-primary-short"><div class="heroku-header"><div class="container">
+<a class="heroku-brand" href="https://devcenter.heroku.com/">Heroku Dev Center</a><ul class="nav">
+<li class="heroku-nav-item">
+<a href="https://www.heroku.com/pricing">Pricing</a></li><li class="heroku-nav-item">
+<a href="https://elements.heroku.com/">Elements</a></li><li class="heroku-nav-item">
+<a href="https://blog.heroku.com/">Blog</a></li><li class="heroku-nav-item">
+<a href="https://help.heroku.com/">Support</a></li><li class="heroku-nav-item">
+<a href="https://www.heroku.com/contact">Contact</a></li><li class="heroku-nav-item">
+<a href="https://devcenter.heroku.com/login?back_to=%2Farticles%2Fclojure-web-application">Log in</a></li><li class="heroku-nav-item">
+<a href="https://signup.heroku.com/dc">Sign up</a>
+</li></ul>
+<span class="mobile-nav">Show nav</span>
+</div></div></div>
+<div class="main-nav-bar"><div class="container">
+<ul class="nav navbar-nav">
+<li><a href="https://devcenter.heroku.com/start">Getting Started</a></li>
+<li><a href="https://devcenter.heroku.com/categories/reference">Reference</a></li>
+<li><a class=" active" href="https://devcenter.heroku.com/categories/learning">Learning</a></li>
+</ul>
+<form accept-charset="UTF-8" action="https://devcenter.heroku.com/search/raw" class="search-form" method="get">
+<div style="display:none"><input name="utf8" type="hidden" value="✓"></div>
+<div class="search-input-group">
+<span class="icon-search"></span><input class="js-search form-control" id="query" name="query" placeholder="Search" required="required" type="text" tabindex="1">
+</div>
+</form>
+</div></div></header><div class="container">
+<div class="js-admin-tabs js-article"></div>
+<div class="col-md-4 sidebar nocontent"><ul class="secondary-nav nav"><li>
+<h2>Learning</h2>
+<ul><li><a href="https://devcenter.heroku.com/categories/application-architecture">Application Architecture</a></li></ul>
+<ul>
+<li><a href="https://devcenter.heroku.com/categories/nodejs">Node.js</a></li>
+<li><a href="https://devcenter.heroku.com/categories/ruby">Ruby</a></li>
+<li><a href="https://devcenter.heroku.com/categories/java">Java</a></li>
+<li><a href="https://devcenter.heroku.com/categories/php">PHP</a></li>
+<li><a href="https://devcenter.heroku.com/categories/python">Python</a></li>
+<li><a href="https://devcenter.heroku.com/categories/go">Go</a></li>
+<li><a href="https://devcenter.heroku.com/categories/scala">Scala</a></li>
+<li><a class=" active" href="https://devcenter.heroku.com/categories/clojure">Clojure</a></li>
+</ul>
+<ul>
+<li><a href="https://devcenter.heroku.com/categories/mobile">Mobile</a></li>
+<li><a href="https://devcenter.heroku.com/categories/database">Database</a></li>
+</ul>
+<ul><li><a href="https://devcenter.heroku.com/categories/miscellaneous">Miscellaneous</a></li></ul>
+<ul><li><a href="https://devcenter.heroku.com/categories/add-on-documentation">All Add-ons</a></li></ul>
+</li></ul></div>
+<div class="col-md-8 content"><article class="js-autolink "><h1>Building a Database-Backed Clojure Web Application</h1>
+<p class="last-updated"><span class="icon-clock"></span>Last updated 04 February 2016</p>
+<div id="table-of-contents">
+<h3>
+<span class="icon-list"></span>Table of Contents</h3>
+<ul>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#prerequisites">Prerequisites</a></li>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#connecting-to-postgresql-with-clojure-java-jdbc">Connecting to PostgreSQL with clojure.java.jdbc</a></li>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#web-bindings-with-compojure">Web bindings with Compojure</a></li>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#html-templating-with-hiccup">HTML templating with Hiccup</a></li>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#putting-it-all-together">Putting it all together</a></li>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#testing-locally">Testing locally</a></li>
+<li><a href="https://devcenter.heroku.com/articles/clojure-web-application#deploy">Deploy</a></li>
+</ul>
+</div>
+<p>This article will explore creating a database-backed Clojure web application.</p>
+
+<p>The app is called <a href="http://shouter.herokuapp.com/">Shouter</a>, a small Twitter clone that lets users enter in “shouts” which are stored in a PostgreSQL database and displayed on the front page of the app. You can see an example of the finished <a href="http://shouter.herokuapp.com/">Shouter deployed to
+Heroku</a> or view <a href="http://github.com/technomancy/shouter">the finished source</a>.</p>
+
+<p>Let’s get started!</p>
+
+<h2 id="prerequisites"><a href="https://devcenter.heroku.com/articles/clojure-web-application#prerequisites">Prerequisites</a></h2>
+
+<ul>
+<li>You have read and understood the <a href="https://devcenter.heroku.com/articles/getting-started-with-clojure">Getting Started with Clojure on Heroku</a>.</li>
+<li>You have the <a href="http://www.postgresql.org/">PostgreSQL</a> database server installed and running locally.</li>
+<li>A Heroku user account.  <a href="https://signup.heroku.com/devcenter">Signup is free and instant.</a>
+</li>
+</ul>
+
+<h2 id="connecting-to-postgresql-with-clojure-java-jdbc"><a href="https://devcenter.heroku.com/articles/clojure-web-application#connecting-to-postgresql-with-clojure-java-jdbc">Connecting to PostgreSQL with clojure.java.jdbc</a></h2>
+
+<p>Database persistence is important for many web applications, including this example app. Clojure’s officially supported libraries conveniently include the <a href="https://github.com/clojure/java.jdbc">clojure.java.jdbc</a> for database persistence through the <a href="http://en.wikipedia.org/wiki/Java_Database_Connectivity">JDBC</a> standard.</p>
+
+<p>To start, create a new project called <code>shouter</code> with Leiningen:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> lein new shouter
+</span></pre></div>
+</div>
+
+
+<p>In the <code>shouter</code> project, add the Clojure JDBC and PostgreSQL driver dependencies. Note that the version numbers here are current at the time of this writing. Newer version numbers may be available later, but compatibility is not guaranteed.</p>
+
+<h4 id="connecting-to-postgresql-with-clojure-java-jdbc-project-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#connecting-to-postgresql-with-clojure-java-jdbc-project-clj">project.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(defproject shouter <span class="string"><span class="delimiter">"</span><span class="content">0.0.2</span><span class="delimiter">"</span></span>
+  <span class="symbol">:description</span> <span class="string"><span class="delimiter">"</span><span class="content">Shouter app</span><span class="delimiter">"</span></span>
+  <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">https://github.com/technomancy/shouter</span><span class="delimiter">"</span></span>
+  <span class="symbol">:min-lein-version</span> <span class="string"><span class="delimiter">"</span><span class="content">2.0.0</span><span class="delimiter">"</span></span>
+  <span class="symbol">:license</span> {<span class="symbol">:name</span> <span class="string"><span class="delimiter">"</span><span class="content">Eclipse Public License</span><span class="delimiter">"</span></span>
+            <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">http://www.eclipse.org/legal/epl-v10.html</span><span class="delimiter">"</span></span>}
+  <span class="symbol">:dependencies</span> [[org.clojure/clojure <span class="string"><span class="delimiter">"</span><span class="content">1.7.0</span><span class="delimiter">"</span></span>]
+                 [org.clojure/java.jdbc <span class="string"><span class="delimiter">"</span><span class="content">0.4.1</span><span class="delimiter">"</span></span>]
+                 [org.postgresql/postgresql <span class="string"><span class="delimiter">"</span><span class="content">9.4-1201-jdbc41</span><span class="delimiter">"</span></span>]])
+</pre></div>
+</div>
+
+
+<p>Rather than running PostgreSQL as a system-level background daemon as some package managers do by default, it’s recommended for development work that you launch <code>postgres</code> yourself to avoid permissions issues and improve visibility:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> initdb pg
+</span><span class="prompt">$</span><span class="function"> postgres -D pg &amp;
+</span></pre></div>
+</div>
+
+
+<p>If these executables aren’t found, try adding <code>/usr/lib/postgresql/*/bin</code> to your <code>$PATH</code>.</p>
+
+<p>Then create a local PostgreSQL database for development work:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> createdb shouter
+</span></pre></div>
+</div>
+
+
+<p>Boot up a REPL to start experimenting, either from the command-line or in your editor.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> lein repl
+</span></pre></div>
+</div>
+
+
+<p>The first thing we’ll try is creating a table in the database. Bring in the JDBC functions:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>user=&gt; (<span class="keyword">require</span> '[clojure.java.jdbc <span class="symbol">:as</span> sql])
+<span class="predefined-constant">nil</span>
+</pre></div>
+</div>
+
+
+<p>This resolves the <code>clojure.java.jdbc</code> namespace and aliases it for use as <code>sql</code>.  To create the table:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>user=&gt; (sql/db-do-commands <span class="string"><span class="delimiter">"</span><span class="content">postgresql://localhost:5432/shouter</span><span class="delimiter">"</span></span>
+                           (sql/create-table-ddl <span class="symbol">:testing</span> [<span class="symbol">:data</span> <span class="symbol">:text</span>]))
+(<span class="integer">0</span>)
+</pre></div>
+</div>
+
+
+<p>This creates a table named <code>testing</code> inside the database with a text field named <code>data</code>. Let’s put some data into the <code>data</code> field:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>user=&gt; (sql/insert! <span class="string"><span class="delimiter">"</span><span class="content">postgresql://localhost:5432/shouter</span><span class="delimiter">"</span></span>
+                    <span class="symbol">:testing</span> {<span class="symbol">:data</span> <span class="string"><span class="delimiter">"</span><span class="content">Hello World</span><span class="delimiter">"</span></span>})
+({<span class="symbol">:data</span> <span class="string"><span class="delimiter">"</span><span class="content">Hello World</span><span class="delimiter">"</span></span>})
+</pre></div>
+</div>
+
+
+<p>Now that you have created some data, ask the database to give it back:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>user=&gt; (sql/query <span class="string"><span class="delimiter">"</span><span class="content">postgresql://localhost:5432/shouter</span><span class="delimiter">"</span></span>
+                  [<span class="string"><span class="delimiter">"</span><span class="content">select * from testing</span><span class="delimiter">"</span></span>])
+({<span class="symbol">:data</span> <span class="string"><span class="delimiter">"</span><span class="content">Hello World</span><span class="delimiter">"</span></span>})
+</pre></div>
+</div>
+
+
+<p>Excellent, the data is easily retrievable. Drop the table so it’s not hanging around for later:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>user=&gt; (sql/db-do-commands <span class="string"><span class="delimiter">"</span><span class="content">postgresql://localhost:5432/shouter</span><span class="delimiter">"</span></span>
+                           <span class="string"><span class="delimiter">"</span><span class="content">drop table testing</span><span class="delimiter">"</span></span>)
+(<span class="integer">0</span>)
+</pre></div>
+</div>
+
+
+<p>That’s all the database basics needed to get started. For a walkthrough of some other common questions, see <a href="http://clojure-doc.org/articles/ecosystem/java_jdbc/home.html">this guide from clojuredocs.org</a>.</p>
+
+<h2 id="web-bindings-with-compojure"><a href="https://devcenter.heroku.com/articles/clojure-web-application#web-bindings-with-compojure">Web bindings with Compojure</a></h2>
+
+<p><a href="https://github.com/weavejester/compojure">Compojure</a> is a popular library for web development in Clojure, and it is at the core of Shouter.</p>
+
+<p>Compojure is built on top of <a href="https://github.com/ring-clojure/ring">Ring</a>, a general-purpose web application library similar to Ruby’s <a href="http://rack.github.io/">Rack</a>. Ring will implement much of the app’s low-level glue, while Compojure will provide a concise syntax with which to define application logic.</p>
+
+<p>Add Compojure to the <code>project.clj</code> file along with a Jetty HTTP server adapter:</p>
+
+<h4 id="web-bindings-with-compojure-project-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#web-bindings-with-compojure-project-clj">project.clj</a></h4>
+
+<div class="callout">
+<p>If you’re using an older version of Leiningen you may need to manually run <code>lein deps</code> to fetch the updated dependencies here.</p>
+</div>
+
+<div class="CodeRay">
+  <div class="code"><pre>(defproject shouter <span class="string"><span class="delimiter">"</span><span class="content">0.0.2</span><span class="delimiter">"</span></span>
+  <span class="symbol">:description</span> <span class="string"><span class="delimiter">"</span><span class="content">Shouter app</span><span class="delimiter">"</span></span>
+  <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">https://github.com/technomancy/shouter</span><span class="delimiter">"</span></span>
+  <span class="symbol">:min-lein-version</span> <span class="string"><span class="delimiter">"</span><span class="content">2.0.0</span><span class="delimiter">"</span></span>
+  <span class="symbol">:license</span> {<span class="symbol">:name</span> <span class="string"><span class="delimiter">"</span><span class="content">Eclipse Public License</span><span class="delimiter">"</span></span>
+            <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">http://www.eclipse.org/legal/epl-v10.html</span><span class="delimiter">"</span></span>}
+  <span class="symbol">:dependencies</span> [[org.clojure/clojure <span class="string"><span class="delimiter">"</span><span class="content">1.7.0</span><span class="delimiter">"</span></span>]
+                 [org.clojure/java.jdbc <span class="string"><span class="delimiter">"</span><span class="content">0.4.1</span><span class="delimiter">"</span></span>]
+                 [org.postgresql/postgresql <span class="string"><span class="delimiter">"</span><span class="content">9.4-1201-jdbc41</span><span class="delimiter">"</span></span>]
+                 [ring/ring-jetty-adapter <span class="string"><span class="delimiter">"</span><span class="content">1.4.0</span><span class="delimiter">"</span></span>]
+                 [compojure <span class="string"><span class="delimiter">"</span><span class="content">1.4.0</span><span class="delimiter">"</span></span>]])
+</pre></div>
+</div>
+
+
+<p>Now add some initial code in <code>src/shouter/web.clj</code>:</p>
+
+<h4 id="web-bindings-with-compojure-src-shouter-web-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#web-bindings-with-compojure-src-shouter-web-clj">src/shouter/web.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.web</span>
+  (<span class="symbol">:require</span> [compojure.core <span class="symbol">:refer</span> [defroutes GET]]
+            [ring.adapter.jetty <span class="symbol">:as</span> ring]))
+
+(defroutes routes
+  (GET <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span> [] <span class="string"><span class="delimiter">"</span><span class="content">&lt;h2&gt;Hello World&lt;/h2&gt;</span><span class="delimiter">"</span></span>))
+
+(<span class="keyword">defn</span> <span class="function">-main</span> []
+  (ring/run-jetty <span class="error">#</span>'routes {<span class="symbol">:port</span> <span class="integer">8080</span> <span class="symbol">:join?</span> <span class="predefined-constant">false</span>}))
+</pre></div>
+</div>
+
+
+<p>Your old REPL process will be out of date since you’ve changed your
+dependencies, so exit it and start a new one.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> lein repl
+</span><span class="string">user&gt; (require 'shouter.web)
+</span><span class="string">nil
+</span><span class="string">user&gt; (shouter.web/-main)
+</span><span class="string">Creating database structure... done
+</span><span class="string">2015-08-26 19:30:07.277:INFO:oejs.Server:nREPL-worker-0: jetty-9.2.10.v20150310
+</span><span class="string">2015-08-26 19:30:07.333:INFO:oejs.ServerConnector:nREPL-worker-0: Started ServerConnector@249942f5{HTTP/1.1}{0.0.0.0:8080}
+</span><span class="string">2015-08-26 19:30:07.334:INFO:oejs.Server:nREPL-worker-0: Started @8655ms
+</span><span class="string">#object[org.eclipse.jetty.server.Server 0x5f92ac2e "org.eclipse.jetty.server.Server@5f92ac2e"]
+</span><span class="string">shouter.web=&gt;
+</span></pre></div>
+</div>
+
+
+<p>You can now point your browser to <code>http://localhost:8080</code> to see the fruits of your labor. The next step is HTML templates.</p>
+
+<h2 id="html-templating-with-hiccup"><a href="https://devcenter.heroku.com/articles/clojure-web-application#html-templating-with-hiccup">HTML templating with Hiccup</a></h2>
+
+<p>Clojure has a wide variety of HTML templating libraries, but the simplest is <a href="https://github.com/weavejester/hiccup">Hiccup</a>. Hiccup templates are just Clojure functions that emit HTML when called. Let’s add some simple HTML templating to the app with Hiccup.</p>
+
+<p>First, add Hiccup to the <code>project.clj</code> file:</p>
+
+<h4 id="html-templating-with-hiccup-project-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#html-templating-with-hiccup-project-clj">project.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(defproject shouter <span class="string"><span class="delimiter">"</span><span class="content">0.0.2</span><span class="delimiter">"</span></span>
+  <span class="symbol">:description</span> <span class="string"><span class="delimiter">"</span><span class="content">Shouter app</span><span class="delimiter">"</span></span>
+  <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">https://github.com/technomancy/shouter</span><span class="delimiter">"</span></span>
+  <span class="symbol">:min-lein-version</span> <span class="string"><span class="delimiter">"</span><span class="content">2.0.0</span><span class="delimiter">"</span></span>
+  <span class="symbol">:license</span> {<span class="symbol">:name</span> <span class="string"><span class="delimiter">"</span><span class="content">Eclipse Public License</span><span class="delimiter">"</span></span>
+            <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">http://www.eclipse.org/legal/epl-v10.html</span><span class="delimiter">"</span></span>}
+  <span class="symbol">:dependencies</span> [[org.clojure/clojure <span class="string"><span class="delimiter">"</span><span class="content">1.7.0</span><span class="delimiter">"</span></span>]
+                 [org.clojure/java.jdbc <span class="string"><span class="delimiter">"</span><span class="content">0.4.1</span><span class="delimiter">"</span></span>]
+                 [org.postgresql/postgresql <span class="string"><span class="delimiter">"</span><span class="content">9.4-1201-jdbc41</span><span class="delimiter">"</span></span>]
+                 [ring/ring-jetty-adapter <span class="string"><span class="delimiter">"</span><span class="content">1.4.0</span><span class="delimiter">"</span></span>]
+                 [compojure <span class="string"><span class="delimiter">"</span><span class="content">1.4.0</span><span class="delimiter">"</span></span>]
+                 [ring/ring-defaults <span class="string"><span class="delimiter">"</span><span class="content">0.1.2</span><span class="delimiter">"</span></span>]
+                 [hiccup <span class="string"><span class="delimiter">"</span><span class="content">1.0.5</span><span class="delimiter">"</span></span>]])
+</pre></div>
+</div>
+
+
+<p>Now start a REPL and take a quick look at how Hiccup works:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>user=&gt; (<span class="keyword">require</span> '[hiccup.core <span class="symbol">:as</span> h])
+<span class="predefined-constant">nil</span>
+user=&gt; (h/html [<span class="symbol">:h1</span> <span class="string"><span class="delimiter">"</span><span class="content">Hello Word</span><span class="delimiter">"</span></span>])
+<span class="string"><span class="delimiter">"</span><span class="content">&lt;h1&gt;Hello Word&lt;/h1&gt;</span><span class="delimiter">"</span></span>
+</pre></div>
+</div>
+
+
+<p>You can use Hiccup inside of the current Compojure application to produce all the HTML needed. In <code>src/shouter/web.clj</code>, add <code>hiccup.page</code> to the <code>ns</code> declaration:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="symbol">:require</span> [hiccup.page <span class="symbol">:as</span> page])
+</pre></div>
+</div>
+
+
+<p>Now add a simple <code>index</code> function:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">defn</span> <span class="function">index</span> []
+  (page/html5
+    [<span class="symbol">:head</span>
+      [<span class="symbol">:title</span> <span class="string"><span class="delimiter">"</span><span class="content">Hello World</span><span class="delimiter">"</span></span>]]
+    [<span class="symbol">:body</span>
+      [<span class="symbol">:div</span> {<span class="symbol">:id</span> <span class="string"><span class="delimiter">"</span><span class="content">content</span><span class="delimiter">"</span></span>} <span class="string"><span class="delimiter">"</span><span class="content">Hello World</span><span class="delimiter">"</span></span>]]))
+</pre></div>
+</div>
+
+
+<p>Finally, add the <code>index</code> function to the routes. Your routes should end up like this:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>(defroutes routes
+  (GET <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span> [] (index)))
+</pre></div>
+</div>
+
+
+<p>Restart your application. Rather than calling <code>-main</code> from the repl, you can use <code>lein run -m shouter.web</code> to start the server if you prefer. You should see <code>"Hello World"</code> in smaller text this time at <code>http://localhost:8080</code>.  If you inspect the source you should see a proper HTML document as well.</p>
+
+<p>Just like Compojure, Hiccup goes deeper. This brief introduction is enough to get you moving to your real objective.</p>
+
+<h2 id="putting-it-all-together"><a href="https://devcenter.heroku.com/articles/clojure-web-application#putting-it-all-together">Putting it all together</a></h2>
+
+<p>Now that the basics have been covered, you can build the full Shouter application.</p>
+
+<p>You can find the complete code for the Shouter application <a href="https://github.com/abedra/shouter">here</a>,  including a <code>resources</code> directory with a set of styles.  Feel free to copy this directory into your project to get the same look and feel.</p>
+
+<p>For the app application itself, start with <code>src/shouter/web.clj</code>:</p>
+
+<h4 id="putting-it-all-together-src-shouter-web-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#putting-it-all-together-src-shouter-web-clj">src/shouter/web.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.web</span>
+  (<span class="symbol">:require</span> [compojure.core <span class="symbol">:refer</span> [defroutes]]
+            [ring.adapter.jetty <span class="symbol">:as</span> ring]
+            [compojure.route <span class="symbol">:as</span> route]
+            [ring.middleware.defaults <span class="symbol">:refer</span> [wrap-defaults site-defaults]]
+            [shouter.controllers.shouts <span class="symbol">:as</span> shouts]
+            [shouter.views.layout <span class="symbol">:as</span> layout]
+            [shouter.models.migration <span class="symbol">:as</span> schema])
+  (<span class="symbol">:gen-class</span>))
+
+(defroutes routes
+  shouts/routes
+  (route/resources <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>)
+  (route/not-found (layout/four-oh-four)))
+
+(<span class="keyword">def</span> <span class="function">application</span> (wrap-defaults routes site-defaults))
+
+(<span class="keyword">defn</span> <span class="function">start</span> [port]
+  (ring/run-jetty application {<span class="symbol">:port</span> port
+                               <span class="symbol">:join?</span> <span class="predefined-constant">false</span>}))
+
+(<span class="keyword">defn</span> <span class="function">-main</span> []
+  (schema/migrate)
+  (<span class="keyword">let</span> [port (Integer. (<span class="keyword">or</span> (System/getenv <span class="string"><span class="delimiter">"</span><span class="content">PORT</span><span class="delimiter">"</span></span>) <span class="string"><span class="delimiter">"</span><span class="content">8080</span><span class="delimiter">"</span></span>))]
+    (start port)))
+</pre></div>
+</div>
+
+
+<p>You’ll notice that the <code>index</code> function is now removed and some additional routes are in place. The new <code>-main</code> function is how you will start the application from the command line, and the <code>start</code> function is how you will work from within a REPL. Notice the addition of the shouts controller namespace. Head there and fill in the code:</p>
+
+<h4 id="src-shouter-controllers-shouts-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#src-shouter-controllers-shouts-clj">src/shouter/controllers/shouts.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.controllers.shouts</span>
+  (<span class="symbol">:require</span> [compojure.core <span class="symbol">:refer</span> [defroutes GET POST]]
+            [clojure.string <span class="symbol">:as</span> <span class="keyword">str</span>]
+            [ring.util.response <span class="symbol">:as</span> ring]
+            [shouter.views.shouts <span class="symbol">:as</span> view]
+            [shouter.models.shout <span class="symbol">:as</span> model]))
+
+(<span class="keyword">defn</span> <span class="function">index</span> []
+  (view/index (model/all)))
+
+(<span class="keyword">defn</span> <span class="function">create</span>
+  [shout]
+  (<span class="keyword">when-not</span> (str/blank? shout)
+    (model/create shout))
+  (ring/redirect <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>))
+
+(defroutes routes
+  (GET  <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span> [] (index))
+  (POST <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span> [shout] (create shout)))
+</pre></div>
+</div>
+
+
+<p>The code above is the infrastructure for handling user actions.  Working from bottom to top you find the piece of code linked in <code>web.clj</code>, the routes. This describes how routes should be handled in this controller.  Using this technique, routes can be kept in each controller for reference, and then referred to in the global routes contained in <code>web.clj</code>.  The <code>index</code> and <code>create</code> functions are just the simple responders. Next is the view layer:</p>
+
+<h4 id="src-shouter-views-layout-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#src-shouter-views-layout-clj">src/shouter/views/layout.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.views.layout</span>
+  (<span class="symbol">:require</span> [hiccup.page <span class="symbol">:as</span> h]))
+
+(<span class="keyword">defn</span> <span class="function">common</span> [title &amp; body]
+  (h/html5
+   [<span class="symbol">:head</span>
+    [<span class="symbol">:meta</span> {<span class="symbol">:charset</span> <span class="string"><span class="delimiter">"</span><span class="content">utf-8</span><span class="delimiter">"</span></span>}]
+    [<span class="symbol">:meta</span> {<span class="symbol">:http-equiv</span> <span class="string"><span class="delimiter">"</span><span class="content">X-UA-Compatible</span><span class="delimiter">"</span></span> <span class="symbol">:content</span> <span class="string"><span class="delimiter">"</span><span class="content">IE=edge,chrome=1</span><span class="delimiter">"</span></span>}]
+    [<span class="symbol">:meta</span> {<span class="symbol">:name</span> <span class="string"><span class="delimiter">"</span><span class="content">viewport</span><span class="delimiter">"</span></span> <span class="symbol">:content</span>
+            <span class="string"><span class="delimiter">"</span><span class="content">width=device-width, initial-scale=1, maximum-scale=1</span><span class="delimiter">"</span></span>}]
+    [<span class="symbol">:title</span> title]
+    (h/include-css <span class="string"><span class="delimiter">"</span><span class="content">/stylesheets/base.css</span><span class="delimiter">"</span></span>
+                 <span class="string"><span class="delimiter">"</span><span class="content">/stylesheets/skeleton.css</span><span class="delimiter">"</span></span>
+                 <span class="string"><span class="delimiter">"</span><span class="content">/stylesheets/screen.css</span><span class="delimiter">"</span></span>)
+    (h/include-css <span class="string"><span class="delimiter">"</span><span class="content">http://fonts.googleapis.com/css?family=Sigmar+One&amp;v1</span><span class="delimiter">"</span></span>)]
+   [<span class="symbol">:body</span>
+    [<span class="symbol">:div</span> {<span class="symbol">:id</span> <span class="string"><span class="delimiter">"</span><span class="content">header</span><span class="delimiter">"</span></span>}
+     [<span class="symbol">:h1</span> {<span class="symbol">:class</span> <span class="string"><span class="delimiter">"</span><span class="content">container</span><span class="delimiter">"</span></span>} <span class="string"><span class="delimiter">"</span><span class="content">SHOUTER</span><span class="delimiter">"</span></span>]]
+    [<span class="symbol">:div</span> {<span class="symbol">:id</span> <span class="string"><span class="delimiter">"</span><span class="content">content</span><span class="delimiter">"</span></span> <span class="symbol">:class</span> <span class="string"><span class="delimiter">"</span><span class="content">container</span><span class="delimiter">"</span></span>} body]]))
+
+(<span class="keyword">defn</span> <span class="function">four-oh-four</span> []
+  (common <span class="string"><span class="delimiter">"</span><span class="content">Page Not Found</span><span class="delimiter">"</span></span>
+          [<span class="symbol">:div</span> {<span class="symbol">:id</span> <span class="string"><span class="delimiter">"</span><span class="content">four-oh-four</span><span class="delimiter">"</span></span>}
+           <span class="string"><span class="delimiter">"</span><span class="content">The page you requested could not be found</span><span class="delimiter">"</span></span>]))
+</pre></div>
+</div>
+
+
+<p>This is the base for rendering views.  It sets up a template that you can call in the display functions to reduce the amount of duplication.  The <code>four-oh-four</code> function is just a small extension that is setup in the global routes. Now on to the real views:</p>
+
+<h4 id="src-shouter-views-shouts-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#src-shouter-views-shouts-clj">src/shouter/views/shouts.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.views.shouts</span>
+  (<span class="symbol">:require</span> [shouter.views.layout <span class="symbol">:as</span> layout]
+            [hiccup.core <span class="symbol">:refer</span> [h]]
+            [hiccup.form <span class="symbol">:as</span> form]
+            [ring.util.anti-forgery <span class="symbol">:as</span> anti-forgery]))
+
+(<span class="keyword">defn</span> <span class="function">shout-form</span> []
+  [<span class="symbol">:div</span> {<span class="symbol">:id</span> <span class="string"><span class="delimiter">"</span><span class="content">shout-form</span><span class="delimiter">"</span></span> <span class="symbol">:class</span> <span class="string"><span class="delimiter">"</span><span class="content">sixteen columns alpha omega</span><span class="delimiter">"</span></span>}
+   (form/form-to [<span class="symbol">:post</span> <span class="string"><span class="delimiter">"</span><span class="content">/</span><span class="delimiter">"</span></span>]
+                 (anti-forgery/anti-forgery-field)
+                 (form/label <span class="string"><span class="delimiter">"</span><span class="content">shout</span><span class="delimiter">"</span></span> <span class="string"><span class="delimiter">"</span><span class="content">What do you want to SHOUT?</span><span class="delimiter">"</span></span>)
+                 (form/text-area <span class="string"><span class="delimiter">"</span><span class="content">shout</span><span class="delimiter">"</span></span>)
+                 (form/submit-button <span class="string"><span class="delimiter">"</span><span class="content">SHOUT!</span><span class="delimiter">"</span></span>))])
+
+(<span class="keyword">defn</span> <span class="function">display-shouts</span> [shouts]
+  [<span class="symbol">:div</span> {<span class="symbol">:class</span> <span class="string"><span class="delimiter">"</span><span class="content">shouts sixteen columns alpha omega</span><span class="delimiter">"</span></span>}
+   (<span class="keyword">map</span>
+    (<span class="keyword">fn</span> [shout] [<span class="symbol">:h2</span> {<span class="symbol">:class</span> <span class="string"><span class="delimiter">"</span><span class="content">shout</span><span class="delimiter">"</span></span>} (h (<span class="symbol">:body</span> shout))])
+    shouts)])
+
+(<span class="keyword">defn</span> <span class="function">index</span> [shouts]
+  (layout/common <span class="string"><span class="delimiter">"</span><span class="content">SHOUTER</span><span class="delimiter">"</span></span>
+                 (shout-form)
+                 [<span class="symbol">:div</span> {<span class="symbol">:class</span> <span class="string"><span class="delimiter">"</span><span class="content">clear</span><span class="delimiter">"</span></span>}]
+                 (display-shouts shouts)))
+</pre></div>
+</div>
+
+
+<p>This is the meat of the display logic. Notice how the addition of the code in <code>layout.clj</code> made things a little easier. Now that the front end is in place, move on to the data layer:</p>
+
+<h4 id="src-shouter-models-migration-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#src-shouter-models-migration-clj">src/shouter/models/migration.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.models.migration</span>
+  (<span class="symbol">:require</span> [clojure.java.jdbc <span class="symbol">:as</span> sql]
+            [shouter.models.shout <span class="symbol">:as</span> shout]))
+
+(<span class="keyword">defn</span> <span class="function">migrated?</span> []
+  (<span class="keyword">-&gt;</span> (sql/query shout/spec
+                 [(<span class="keyword">str</span> <span class="string"><span class="delimiter">"</span><span class="content">select count(*) from information_schema.tables </span><span class="delimiter">"</span></span>
+                       <span class="string"><span class="delimiter">"</span><span class="content">where table_name='shouts'</span><span class="delimiter">"</span></span>)])
+      <span class="keyword">first</span> <span class="symbol">:count</span> <span class="keyword">pos?</span>))
+
+(<span class="keyword">defn</span> <span class="function">migrate</span> []
+  (<span class="keyword">when</span> (<span class="keyword">not</span> (migrated?))
+    (<span class="keyword">print</span> <span class="string"><span class="delimiter">"</span><span class="content">Creating database structure...</span><span class="delimiter">"</span></span>) (<span class="keyword">flush</span>)
+    (sql/db-do-commands shout/spec
+                        (sql/create-table-ddl
+                         <span class="symbol">:shouts</span>
+                         [<span class="symbol">:id</span> <span class="symbol">:serial</span> <span class="string"><span class="delimiter">"</span><span class="content">PRIMARY KEY</span><span class="delimiter">"</span></span>]
+                         [<span class="symbol">:body</span> <span class="symbol">:varchar</span> <span class="string"><span class="delimiter">"</span><span class="content">NOT NULL</span><span class="delimiter">"</span></span>]
+                         [<span class="symbol">:created_at</span> <span class="symbol">:timestamp</span>
+                          <span class="string"><span class="delimiter">"</span><span class="content">NOT NULL</span><span class="delimiter">"</span></span> <span class="string"><span class="delimiter">"</span><span class="content">DEFAULT CURRENT_TIMESTAMP</span><span class="delimiter">"</span></span>]))
+    (<span class="keyword">println</span> <span class="string"><span class="delimiter">"</span><span class="content"> done</span><span class="delimiter">"</span></span>)))
+</pre></div>
+</div>
+
+
+<p>Here is the code to create the <code>shouts</code> table in the database and define the necessary fields. Running this will allow you to store shouts:</p>
+
+<h4 id="src-shouter-models-shout-clj"><a href="https://devcenter.heroku.com/articles/clojure-web-application#src-shouter-models-shout-clj">src/shouter/models/shout.clj</a></h4>
+
+<div class="CodeRay">
+  <div class="code"><pre>(<span class="keyword">ns</span> <span class="namespace">shouter.models.shout</span>
+  (<span class="symbol">:require</span> [clojure.java.jdbc <span class="symbol">:as</span> sql]))
+
+(<span class="keyword">def</span> <span class="function">spec</span> (<span class="keyword">or</span> (System/getenv <span class="string"><span class="delimiter">"</span><span class="content">DATABASE_URL</span><span class="delimiter">"</span></span>)
+              <span class="string"><span class="delimiter">"</span><span class="content">postgresql://localhost:5432/shouter</span><span class="delimiter">"</span></span>))
+
+(<span class="keyword">defn</span> <span class="function">all</span> []
+  (<span class="keyword">into</span> [] (sql/query spec [<span class="string"><span class="delimiter">"</span><span class="content">select * from shouts order by id desc</span><span class="delimiter">"</span></span>])))
+
+(<span class="keyword">defn</span> <span class="function">create</span> [shout]
+  (sql/insert! spec <span class="symbol">:shouts</span> [<span class="symbol">:body</span>] [shout]))
+</pre></div>
+</div>
+
+
+<p>The actual data model is quite simple.  All you care about is input and collecting all of the shouts.</p>
+
+<h4 id="entry-point"><a href="https://devcenter.heroku.com/articles/clojure-web-application#entry-point">Entry point</a></h4>
+
+<p>An “uberjar” will be generated for deployment, which is simply a jar archive of your app’s code alongside all its dependencies. You’ll have to give Leiningen the entry point namespace under <code>:main</code> in <code>project.clj</code> for your app so that the uberjar knows where go:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>(defproject shouter <span class="string"><span class="delimiter">"</span><span class="content">0.0.2</span><span class="delimiter">"</span></span>
+  <span class="symbol">:description</span> <span class="string"><span class="delimiter">"</span><span class="content">Shouter app</span><span class="delimiter">"</span></span>
+  <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">https://github.com/technomancy/shouter</span><span class="delimiter">"</span></span>
+  <span class="symbol">:min-lein-version</span> <span class="string"><span class="delimiter">"</span><span class="content">2.0.0</span><span class="delimiter">"</span></span>
+  <span class="symbol">:license</span> {<span class="symbol">:name</span> <span class="string"><span class="delimiter">"</span><span class="content">Eclipse Public License</span><span class="delimiter">"</span></span>
+            <span class="symbol">:url</span> <span class="string"><span class="delimiter">"</span><span class="content">http://www.eclipse.org/legal/epl-v10.html</span><span class="delimiter">"</span></span>}
+  <span class="symbol">:dependencies</span> [[org.clojure/clojure <span class="string"><span class="delimiter">"</span><span class="content">1.7.0</span><span class="delimiter">"</span></span>]
+                 [org.clojure/java.jdbc <span class="string"><span class="delimiter">"</span><span class="content">0.4.1</span><span class="delimiter">"</span></span>]
+                 [org.postgresql/postgresql <span class="string"><span class="delimiter">"</span><span class="content">9.4-1201-jdbc41</span><span class="delimiter">"</span></span>]
+                 [ring/ring-jetty-adapter <span class="string"><span class="delimiter">"</span><span class="content">1.4.0</span><span class="delimiter">"</span></span>]
+                 [compojure <span class="string"><span class="delimiter">"</span><span class="content">1.4.0</span><span class="delimiter">"</span></span>]
+                 [ring/ring-defaults <span class="string"><span class="delimiter">"</span><span class="content">0.1.2</span><span class="delimiter">"</span></span>]
+                 [hiccup <span class="string"><span class="delimiter">"</span><span class="content">1.0.5</span><span class="delimiter">"</span></span>]]
+  <span class="symbol">:main</span> ^<span class="symbol">:skip-aot</span> shouter.web
+  <span class="symbol">:uberjar-name</span> <span class="string"><span class="delimiter">"</span><span class="content">shouter-standalone.jar</span><span class="delimiter">"</span></span>
+  <span class="symbol">:plugins</span> [[lein-ring <span class="string"><span class="delimiter">"</span><span class="content">0.8.13</span><span class="delimiter">"</span></span>]]
+  <span class="symbol">:ring</span> {<span class="symbol">:handler</span> shouter.web/application
+         <span class="symbol">:init</span> shouter.models.migration/migrate}
+  <span class="symbol">:profiles</span> {<span class="symbol">:dev</span> {<span class="symbol">:dependencies</span> [[javax.servlet/servlet-api <span class="string"><span class="delimiter">"</span><span class="content">2.5</span><span class="delimiter">"</span></span>]
+                                  [ring-mock <span class="string"><span class="delimiter">"</span><span class="content">0.1.5</span><span class="delimiter">"</span></span>]]}
+             <span class="symbol">:uberjar</span> {<span class="symbol">:aot</span> <span class="symbol">:all</span>}})
+</pre></div>
+</div>
+
+
+<p>There’s also an <code>:uberjar</code> <a href="https://github.com/technomancy/leiningen/blob/master/doc/PROFILES.md">profile</a> used to trigger AOT (ahead-of-time) compilation during the build process only. You can put <code>:aot :all</code> in the top level of your <code>project.clj</code>, but this can introduce problems during development, so it’s best to only perform this compilation during deployment. Finally Heroku needs the entry point to be declared in a platform-agnostic way in the <code>Procfile</code>:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="string">web: java $JVM_OPTS -jar target/shouter-standalone.jar
+</span></pre></div>
+</div>
+
+
+<p>With this, you have a complete application.</p>
+
+<h2 id="testing-locally"><a href="https://devcenter.heroku.com/articles/clojure-web-application#testing-locally">Testing locally</a></h2>
+
+<p>Generate an uberjar locally to ensure it works:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> lein uberjar
+</span><span class="string">Compiling shouter.web
+</span><span class="string">Compiling shouter.views.shouts
+</span><span class="string">Compiling shouter.views.layout
+</span><span class="string">Compiling shouter.models.shout
+</span><span class="string">Compiling shouter.models.migration
+</span><span class="string">Compiling shouter.controllers.shouts
+</span><span class="string">Created /home/phil/src/shouter/target/shouter-0.0.1.jar
+</span><span class="string">Created /home/phil/src/shouter/target/shouter-standalone.jar
+</span></pre></div>
+</div>
+
+
+<p>Finally, start your application according to what you’ve put in the <code>Procfile</code>:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> java $JVM_OPTS -jar target/shouter-standalone.jar
+</span><span class="string">2014-01-20 16:29:23.309:INFO:oejs.Server:jetty-7.x.y-SNAPSHOT
+</span><span class="string">2014-01-20 16:29:23.372:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:8080
+</span></pre></div>
+</div>
+
+
+<p>A fully functional Shouter app should now be running at <code>http://localhost:8080</code>.</p>
+
+<h2 id="deploy"><a href="https://devcenter.heroku.com/articles/clojure-web-application#deploy">Deploy</a></h2>
+
+<p>Now that you’ve confirmed everything works as expected locally, it’s time to deploy the app to Heroku’s Cedar stack.</p>
+
+<p>Start by committing the app to Git:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> git init
+</span><span class="prompt">$</span><span class="function"> git add .
+</span><span class="prompt">$</span><span class="function"> git commit -m "init"
+</span></pre></div>
+</div>
+
+
+<p>Next, create the the app on Heroku:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> heroku create
+</span><span class="string">Creating stormy-fog-408... done, stack is cedar-14
+</span><span class="string">http://stormy-fog-408.herokuapp.com/ | git@heroku.com:stormy-fog-408.git
+</span><span class="string">Git remote heroku added
+</span></pre></div>
+</div>
+
+
+<p>Now you need to provision a database for the app. Earlier you used the <code>createdb</code> command to provision a local PostgreSQL database. On Heroku we can use the <a href="https://devcenter.heroku.com/articles/heroku-postgresql">Heroku PostgreSQL database add-on</a> to provision a remote database:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> heroku addons:create heroku-postgresql:dev
+</span><span class="string">-----&gt; Adding heroku-postgresql:dev to stormy-fog-408... done, v2 (free)
+</span></pre></div>
+</div>
+
+
+<p>This will add a <code>DATABASE_URL</code> to the app’s environment, which the app will use at run-time to connect to its remote database resource. The <a href="https://devcenter.heroku.com/articles/heroku-postgres-plans#hobby-tier">Heroku Postgres Hobby Tier</a> add-on is free.</p>
+
+<p>Now that your database is provisioned you can deploy the code and scale the web dynos up:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> git push heroku master
+</span><span class="string">Fetching repository, done.
+</span><span class="string">[...]
+</span><span class="string">To git@heroku.com:stormy-fog-408.git
+</span><span class="string">50084da..4b015a9  master -&gt; master
+</span><span class="prompt">$</span><span class="function"> heroku ps:scale web=1
+</span><span class="string">Scaling web processes... done, now running 1
+</span></pre></div>
+</div>
+
+
+<p>Your application should now be running. Confirm that the web process is up with:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span class="prompt">$</span><span class="function"> heroku ps
+</span><span class="string">=== web (Free): `java $JVM_OPTS -jar target/shouter-standalone.jar`
+</span><span class="string">web.1: starting 2015/08/25 10:38:48 (~ 6s ago)
+</span></pre></div>
+</div>
+
+
+<p>Finally, <a href="http://shouter.herokuapp.com/">check out the finished, live application in your browser</a>.</p>
+<div class="article-footer panel">
+<div class="article-tags">
+<span class="icon-tags"></span><a href="https://devcenter.heroku.com/tags/clojure">clojure</a>
+</div>
+<div class="nocontent keep-reading" id="keep-reading">
+<h3>
+<span class="icon-book-open"></span><a href="https://devcenter.heroku.com/articles/clojure-web-application#keep-reading">Keep reading</a>
+</h3>
+<ul class="list-icons">
+<li>
+<span class="icon-files"></span><a href="https://devcenter.heroku.com/categories/clojure">Clojure</a>
+</li>
+<li>
+<span class="icon-file"></span><a href="https://devcenter.heroku.com/articles/getting-started-with-clojure">Getting Started on Heroku with Clojure</a>
+</li>
+<li>
+<span class="icon-file"></span><a href="https://devcenter.heroku.com/articles/heroku-postgresql">Heroku Postgres</a>
+</li>
+<li>
+<span class="icon-file"></span><a href="https://devcenter.heroku.com/articles/heroku-postgres-plans">Choosing the Right Heroku Postgres Plan</a>
+</li>
+</ul>
+</div>
+<div class="article-feedback" id="feedback">
+<h3><a href="https://devcenter.heroku.com/articles/clojure-web-application#feedback"><span class="icon-discussion"></span>Feedback</a></h3>
+<p><a href="https://devcenter.heroku.com/login?back_to=%2Farticles%2Fclojure-web-application&amp;utm_campaign=login&amp;utm_medium=feedback&amp;utm_source=web">Log in to submit feedback.</a></p>
+</div>
+</div></article></div>
+<div class="pagination"><a href="https://devcenter.heroku.com/articles/deploying-clojure" rel="next">Deploying Clojure Apps on Heroku</a></div>
+</div>
+<footer id="heroku-footer"><div class="wrapper">
+<div class="col heroku-footer-links">
+<nav class="col"><h4>Information &amp; Support</h4>
+<ul>
+<li><a href="https://devcenter.heroku.com/start">Getting Started</a></li>
+<li><a href="https://devcenter.heroku.com/categories/reference">Reference</a></li>
+<li><a href="https://devcenter.heroku.com/categories/learning">Learning</a></li>
+<li><a href="https://devcenter.heroku.com/changelog">Changelog</a></li>
+<li><a href="https://blog.heroku.com/">Blog</a></li>
+<li><a href="https://devcenter.heroku.com/articles/support-channels">Support Channels</a></li>
+<li><a href="https://status.heroku.com/">Status</a></li>
+</ul></nav><nav class="col"><h4>Language Reference</h4>
+<ul>
+<li><a href="https://devcenter.heroku.com/categories/nodejs">Node.js</a></li>
+<li><a href="https://devcenter.heroku.com/categories/ruby">Ruby</a></li>
+<li><a href="https://devcenter.heroku.com/categories/java">Java</a></li>
+<li><a href="https://devcenter.heroku.com/categories/php">PHP</a></li>
+<li><a href="https://devcenter.heroku.com/categories/python">Python</a></li>
+<li><a href="https://devcenter.heroku.com/categories/go">Go</a></li>
+<li><a href="https://devcenter.heroku.com/categories/scala">Scala</a></li>
+<li><a href="https://devcenter.heroku.com/categories/clojure">Clojure</a></li>
+</ul></nav><nav class="col"><h4>Other Resources</h4>
+<ul>
+<li><a href="https://www.heroku.com/careers">Careers</a></li>
+<li><a href="https://elements.heroku.com/">Elements</a></li>
+<li><a href="https://www.heroku.com/products">Products</a></li>
+<li><a href="https://www.heroku.com/pricing">Pricing</a></li>
+</ul></nav>
+</div>
+<div class="col heroku-footer-social">
+<h3>
+<span class="heroku-footer-icon-newsletter"></span>Subscribe to our monthly newsletter</h3>
+<form accept-charset="UTF-8" action="https://www.heroku.com/newsletter_signups" id="bookends-newsletter" method="post">
+<input name="utf8" type="hidden" value="✓"><input id="bookends-website" name="website" placeholder="do not fill this in" tabindex="-1" type="text"><input id="newsletter_signup_email" name="newsletter_signup[email]" placeholder="Your email address" required="required" type="email"><input name="commit" type="submit" value="Go"><p class="hide" id="bookends-newsletter-result"></p>
+</form>
+<ul class="social-list">
+<li class="has-dropdown">
+<a class="heroku-footer-icon-rss" href="https://twitter.com/heroku" target="_blank"> Twitter</a><div class="dropdown"><ul>
+<li><a href="http://feeds.feedburner.com/herokudevcenterarticles" target="_blank"><span class="heroku-footer-icon-rss"></span>Dev Center Articles</a></li>
+<li><a href="http://feeds.feedburner.com/herokuchangelog" target="_blank"><span class="heroku-footer-icon-rss"></span>Dev Center Changelog</a></li>
+<li><a href="http://feeds2.feedburner.com/heroku" target="_blank"><span class="heroku-footer-icon-rss"></span>Heroku Blog</a></li>
+<li><a href="https://engineering.heroku.com/feed.xml" target="_blank"><span class="heroku-footer-icon-rss"></span>Engineering Blog</a></li>
+</ul></div>
+</li>
+<li class="has-dropdown">
+<a class="heroku-footer-icon-twitter" href="https://twitter.com/herokudevcenter" target="_blank"> Twitter</a><div class="dropdown"><ul>
+<li><a href="https://twitter.com/herokudevcenter" target="_blank"><span class="heroku-footer-icon-twitter"></span>Dev Center Articles</a></li>
+<li><a href="https://twitter.com/herokuchangelog" target="_blank"><span class="heroku-footer-icon-twitter"></span>Dev Center Changelog</a></li>
+<li><a href="https://twitter.com/heroku" target="_blank"><span class="heroku-footer-icon-twitter"></span>Heroku</a></li>
+<li><a href="https://twitter.com/herokustatus" target="_blank"><span class="heroku-footer-icon-twitter"></span>Heroku Status</a></li>
+</ul></div>
+</li>
+<li><a class="heroku-footer-icon-facebook" href="https://facebook.com/heroku" target="_blank"> Facebook</a></li>
+<li><a class="heroku-footer-icon-github" href="https://github.com/heroku" target="_blank"> Github</a></li>
+<li><a class="heroku-footer-icon-linkedin" href="https://www.linkedin.com/company/heroku" target="_blank"> LinkedIn</a></li>
+</ul>
+</div>
+</div>
+<div class="tertiary"><div class="wrapper">
+<div class="col"><a class="sfdc-logo" href="https://heroku.com/home" title="heroku.com">Heroku is a<span></span>company</a></div>
+<div class="col">
+<p class="copyright">©<script data-turbolinks-eval="false" type="text/javascript"> document.write(new Date().getFullYear());</script>2016 Salesforce.com</p>
+<ul>
+<li><a href="https://heroku.com/home">heroku.com</a></li>
+<li><a href="https://heroku.com/policy/tos">Terms of Service</a></li>
+<li><a href="https://heroku.com/policy/privacy">Privacy</a></li>
+<li><a href="https://heroku.com/policy/privacy#web_site_navigational_information">Cookies</a></li>
+</ul>
+</div>
+</div></div></footer>
+</div>
+<!-- Google Tag Manager -->
+<noscript>&lt;iframe src="//www.googletagmanager.com/ns.html?id=GTM-JD26" height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-JD26');</script>
+<!-- End Google Tag Manager -->
+<script src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/public-bca479380a7f3681994f63764140685e346936cb12d9961b19319322dbd655e0.js"></script>
+
+<script type="text/javascript" id="">piAId="37622";piCId="30300";(function(){function a(){var b=document.createElement("script");b.type="text/javascript";b.src=("https:"==document.location.protocol?"https://pi":"http://cdn")+".pardot.com/pd.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a)}window.attachEvent?window.attachEvent("onload",a):window.addEventListener("load",a,!1)})();</script>
+
+<script type="text/javascript" id="">!function(){function f(a){var c=/[?&]?([^=]c)=([^&]*)/;a=c.exec(a)||[];return a=decodeURIComponent(a[2])}function g(a){var c="; "+document.cookie;a=c.split("; "+a+"\x3d");return 2==a.length?a.pop().split(";").shift():void 0}function h(a,c){var b="",b=new Date;b.setTime(b.getTime()+12096E5);b="; expires\x3d"+b.toGMTString();document.cookie=a+"\x3d"+c+b+";domain\x3d.heroku.com;path\x3d/"}var e="campaign",d=g(e);"undefined"==typeof d&&(d=f(document.location.search),"undefined"!==d&&h(e,d))}();</script><script type="text/javascript" id="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/js(1)"></script><script type="text/javascript" id="">(function(){var a=function(a){a=new RegExp("[; ]"+a+"\x3d([^\\s;]*)");if(a=(" "+document.cookie).match(a))return unescape(a[1])};if(!a("jbfp")){var c=Math.random().toString(36).substring(2,15)+Math.random().toString(36).substring(2,15);document.cookie="jbfp\x3d"+(new Date).getTime()+"-"+c+";domain\x3dheroku.com;path\x3d/;max-age\x3d31536000"}var c=document.referrer,b=a("jbfp"),d=a("heroku_session"),a=document.createElement("img"),b="https://jambox-p.herokuapp.com/e?url\x3d"+escape(document.location.href)+
+"\x26fp\x3d"+b+"\x26li\x3d"+d;c&&(b+="\x26ref\x3d"+escape(c));a.src=b})();</script><img src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/0" height="0" width="0" style="display:none; visibility: hidden;"><script type="text/javascript" id="" src="https://www.heroku.com/advertisement.js"></script><img height="1" width="1" style="display:none;" alt="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/adsct">
+<img height="1" width="1" style="display:none;" alt="" src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/adsct(1)">
+
+<!--[if lt IE 9]>
+<script src="//d2f2p26ywennn8.cloudfront.net/assets/public/vendor/selectivizr-1.0.min-d17b2fafa766c68aadc50158d12a315549758537eecc733e5162735c89d37674.js"></script>
+<![endif]-->
+
+<script>
+  
+</script>
+<script>
+  
+</script>
+
+
+<div id="mid-container" style="position: absolute; top: -1000px; left: -1000px;"><canvas width="100" height="100"></canvas></div><iframe src="./Building a Database-Backed Clojure Web Application _ Heroku Dev Center_files/iframe.html" id="mm_sync_back_ground" style="visibility: hidden; display: none;"></iframe><script type="text/javascript" id="">void 0===google_tag_manager["GTM-JD26"].macro('gtm1461807612541')&&google_tag_manager["GTM-JD26"].macro('gtm1461807612542')("heroku_ad",google_tag_manager["GTM-JD26"].macro('gtm1461807612543'),void 0,void 0,"heroku.com");</script></body></html>

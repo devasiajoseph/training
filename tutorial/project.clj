@@ -5,12 +5,12 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [selmer "1.0.4"]
-                 [markdown-clj "0.9.87"]
+                 [markdown-clj "0.9.88"]
                  [ring-middleware-format "0.7.0"]
                  [metosin/ring-http-response "0.6.5"]
                  [bouncer "1.0.0"]
                  [org.webjars/bootstrap "4.0.0-alpha.2"]
-                 [org.webjars/font-awesome "4.5.0"]
+                 [org.webjars/font-awesome "4.6.1"]
                  [org.webjars.bower/tether "1.1.1"]
                  [org.webjars/jquery "2.2.2"]
                  [org.clojure/tools.logging "0.3.1"]
@@ -22,15 +22,18 @@
                  [org.clojure/tools.cli "0.3.3"]
                  [luminus-nrepl "0.1.4"]
                  [org.webjars/webjars-locator-jboss-vfs "0.1.0"]
-                 [luminus-immutant "0.1.9"]
-                 [luminus-log4j "0.1.3"]]
+                 [luminus-immutant "0.2.0"]
+                 [luminus-log4j "0.1.3"]
+                 [clj-time "0.11.0"]
+                 ]
 
   :min-lein-version "2.0.0"
 
   :jvm-opts ["-server" "-Dconf=.lein-env"]
   :source-paths ["src/clj"]
+  :java-source-paths ["src/java"]
   :resource-paths ["resources"]
-
+  
   :main tutorial.core
 
   :plugins [[lein-cprop "1.0.1"]]

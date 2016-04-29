@@ -1,67 +1,93 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Clojure Training</title>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
-<meta name="title" content="Clojure Training"/>
-<meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2016-04-25T09:15+0530"/>
-<meta name="author" content="devasia"/>
-<meta name="description" content=""/>
-<meta name="keywords" content=""/>
+<!-- 2016-04-28 Thu 06:55 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Devasia Joseph" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
-  .todo   { color: red; }
+  .todo   { font-family: monospace; color: red; }
   .done   { color: green; }
-  .tag    { background-color: #add8e6; font-weight:normal }
-  .target { }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
-  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
-  .center {margin-left:auto; margin-right:auto; text-align:center;}
-  p.verse { margin-left: 3% }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
   pre {
-	border: 1pt solid #AEBDCC;
-	background-color: #F3F5F7;
-	padding: 5pt;
-	font-family: courier, monospace;
-        font-size: 90%;
-        overflow:auto;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
   }
-  table { border-collapse: collapse; }
-  td, th { vertical-align: top;  }
-  th.right  { text-align:center;  }
-  th.left   { text-align:center;   }
-  th.center { text-align:center; }
-  td.right  { text-align:right;  }
-  td.left   { text-align:left;   }
-  td.center { text-align:center; }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  div.figure { padding: 0.5em; }
-  div.figure p { text-align: center; }
-  div.inlinetask {
-    padding:10px;
-    border:2px solid gray;
-    margin:10px;
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
     background: #ffffcc;
   }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
   textarea { overflow-x: auto; }
-  .linenr { font-size:smaller }
-  .code-highlighted {background-color:#ffff00;}
-  .org-info-js_info-navigation { border-style:none; }
-  #org-info-js_console-label { font-size:10px; font-weight:bold;
-                               white-space:nowrap; }
-  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
-                                 font-weight:bold; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/custom.css" />
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -108,153 +134,144 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-
 </head>
 <body>
-
-<div id="preamble">
-
-</div>
-
 <div id="content">
 <h1 class="title">Clojure Training</h1>
-
-
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 Intro to Functional Programming with Clojure</a>
+<li><a href="#sec-1">1. Intro to Functional Programming with Clojure</a>
 <ul>
-<li><a href="#sec-1-1">1.1 What is functional programming</a>
+<li><a href="#sec-1-1">1.1. What is functional programming</a>
 <ul>
-<li><a href="#sec-1-1-1">1.1.1 Why do we need functional programming?</a></li>
+<li><a href="#sec-1-1-1">1.1.1. Why do we need functional programming?</a></li>
 </ul>
 </li>
-<li><a href="#sec-1-2">1.2 Higher order functions</a></li>
-<li><a href="#sec-1-3">1.3 Anonymous Functions</a></li>
-<li><a href="#sec-1-4">1.4 Functional composition</a></li>
-<li><a href="#sec-1-5">1.5 Pure functions and immutablilty</a></li>
-<li><a href="#sec-1-6">1.6 Map Reduce Filter</a>
+<li><a href="#sec-1-2">1.2. Higher order functions</a></li>
+<li><a href="#sec-1-3">1.3. Anonymous Functions</a></li>
+<li><a href="#sec-1-4">1.4. Functional composition</a></li>
+<li><a href="#sec-1-5">1.5. Pure functions and immutablilty</a></li>
+<li><a href="#sec-1-6">1.6. Map Reduce Filter</a>
 <ul>
-<li><a href="#sec-1-6-1">1.6.1 Map</a></li>
-<li><a href="#sec-1-6-2">1.6.2 Reduce</a></li>
-</ul></li>
+<li><a href="#sec-1-6-1">1.6.1. Map</a></li>
+<li><a href="#sec-1-6-2">1.6.2. Reduce</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2 Intoduction to Clojure</a>
-<ul>
-<li><a href="#sec-2-1">2.1 What is Clojure</a></li>
-<li><a href="#sec-2-2">2.2 Advantages of Clojure</a></li>
-<li><a href="#sec-2-3">2.3 Disadvantages of Clojure</a></li>
-<li><a href="#sec-2-4">2.4 Installing Clojure</a></li>
-<li><a href="#sec-2-5">2.5 Tooling</a>
-<ul>
-<li><a href="#sec-2-5-1">2.5.1 IDE</a></li>
-</ul></li>
 </ul>
 </li>
-<li><a href="#sec-3">3 Basic Clojure Syntax and REPL</a>
+<li><a href="#sec-2">2. Intoduction to Clojure</a>
 <ul>
-<li><a href="#sec-3-1">3.1 Lisp syntax</a></li>
-<li><a href="#sec-3-2">3.2 The REPL</a></li>
-<li><a href="#sec-3-3">3.3 Code execution and Project Structure</a>
+<li><a href="#sec-2-1">2.1. What is Clojure</a></li>
+<li><a href="#sec-2-2">2.2. Advantages of Clojure</a></li>
+<li><a href="#sec-2-3">2.3. Disadvantages of Clojure</a></li>
+<li><a href="#sec-2-4">2.4. Installing Clojure</a></li>
+<li><a href="#sec-2-5">2.5. Tooling</a>
 <ul>
-<li><a href="#sec-3-3-1">3.3.1 Source code</a></li>
-</ul></li>
+<li><a href="#sec-2-5-1">2.5.1. IDE</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">4 Clojure Namespaces</a>
-<ul>
-<li><a href="#sec-4-1">4.1 What is a namespace?</a></li>
-<li><a href="#sec-4-2">4.2 The 'user' namespace</a></li>
-<li><a href="#sec-4-3">4.3 Using code in other namespaces</a></li>
-<li><a href="#sec-4-4">4.4 require, use, and import</a></li>
-<li><a href="#sec-4-5">4.5 Reloading namespaces</a></li>
-<li><a href="#sec-4-6">4.6 The namespace declaration</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5 Working with Java Code &amp; Clojure</a>
+<li><a href="#sec-3">3. Basic Clojure Syntax and REPL</a>
 <ul>
-<li><a href="#sec-5-1">5.1 Importing Java packages</a></li>
-<li><a href="#sec-5-2">5.2 Using static class members</a></li>
-<li><a href="#sec-5-3">5.3 Creating objects</a></li>
-<li><a href="#sec-5-4">5.4 Calling instance methods</a></li>
+<li><a href="#sec-3-1">3.1. Lisp syntax</a></li>
+<li><a href="#sec-3-2">3.2. The REPL</a></li>
+<li><a href="#sec-3-3">3.3. Code execution and Project Structure</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. Source code</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">6 More Clojure Syntax</a>
-<ul>
-<li><a href="#sec-6-1">6.1 Execution (do, doseq, dotimes)</a></li>
-<li><a href="#sec-6-2">6.2 Conditionals (if, cond, condp, case)</a></li>
-<li><a href="#sec-6-3">6.3 Iteration (while, for, loop)</a></li>
-<li><a href="#sec-6-4">6.4 Recursion</a></li>
-<li><a href="#sec-6-5">6.5 Tail recursion</a></li>
-<li><a href="#sec-6-6">6.6 Exception handling</a></li>
-<li><a href="#sec-6-7">6.7 Destructuring</a></li>
-<li><a href="#sec-6-8">6.8 Using :keys and :or Named arguments</a></li>
 </ul>
 </li>
-<li><a href="#sec-7">7 Macros</a>
+<li><a href="#sec-4">4. Clojure Namespaces</a>
 <ul>
-<li><a href="#sec-7-1">7.1 Exploring Macros</a></li>
-<li><a href="#sec-7-2">7.2 Creating our Own Macros</a></li>
-<li><a href="#sec-7-3">7.3 Using Templating to Create Macros</a></li>
+<li><a href="#sec-4-1">4.1. What is a namespace?</a></li>
+<li><a href="#sec-4-2">4.2. The 'user' namespace</a></li>
+<li><a href="#sec-4-3">4.3. Using code in other namespaces</a></li>
+<li><a href="#sec-4-4">4.4. require, use, and import</a></li>
+<li><a href="#sec-4-5">4.5. Reloading namespaces</a></li>
+<li><a href="#sec-4-6">4.6. The namespace declaration</a></li>
 </ul>
 </li>
-<li><a href="#sec-8">8 Data Structures</a>
+<li><a href="#sec-5">5. <span class="todo TODO">TODO</span> Working with Java Code &amp; Clojure</a>
 <ul>
-<li><a href="#sec-8-1">8.1 The four basic structures:</a></li>
-<li><a href="#sec-8-2">8.2 lists</a></li>
-<li><a href="#sec-8-3">8.3 vectors</a></li>
-<li><a href="#sec-8-4">8.4 maps</a></li>
-<li><a href="#sec-8-5">8.5 sets</a></li>
-<li><a href="#sec-8-6">8.6 Sequences</a></li>
-<li><a href="#sec-8-7">8.7 Lazy Sequences</a></li>
-<li><a href="#sec-8-8">8.8 Operations on sequences (eg map, reduce, filter)</a></li>
-<li><a href="#sec-8-9">8.9 Design Considerations for Clojure programming</a></li>
+<li><a href="#sec-5-1">5.1. Importing Java packages</a></li>
+<li><a href="#sec-5-2">5.2. Using static class members</a></li>
+<li><a href="#sec-5-3">5.3. Creating objects</a></li>
+<li><a href="#sec-5-4">5.4. Calling instance methods</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">9 Polymorphism</a>
+<li><a href="#sec-6">6. More Clojure Syntax</a>
 <ul>
-<li><a href="#sec-9-1">9.1 Protocols</a></li>
-<li><a href="#sec-9-2">9.2 Defining and using Types</a></li>
-<li><a href="#sec-9-3">9.3 Defining and using Records</a></li>
-<li><a href="#sec-9-4">9.4 Handling Java with interop</a></li>
+<li><a href="#sec-6-1">6.1. Execution (do, doseq, dotimes)</a></li>
+<li><a href="#sec-6-2">6.2. Conditionals (if, cond, condp, case)</a></li>
+<li><a href="#sec-6-3">6.3. Iteration (while, for, loop)</a></li>
+<li><a href="#sec-6-4">6.4. Recursion</a></li>
+<li><a href="#sec-6-5">6.5. Tail recursion</a></li>
+<li><a href="#sec-6-6">6.6. Exception handling</a></li>
+<li><a href="#sec-6-7">6.7. Destructuring</a></li>
+<li><a href="#sec-6-8">6.8. Using keys and or Named arguments</a></li>
 </ul>
 </li>
-<li><a href="#sec-10">10 Intro to Concurency</a></li>
-<li><a href="#sec-11">11 Intro to Web Programming with Clojure</a>
+<li><a href="#sec-7">7. Macros</a>
 <ul>
-<li><a href="#sec-11-1">11.1 Ring</a></li>
-<li><a href="#sec-11-2">11.2 Compojure</a></li>
-<li><a href="#sec-11-3">11.3 Other foundational libraries</a></li>
-<li><a href="#sec-11-4">11.4 Web Programming with Clojure (contd)</a></li>
-<li><a href="#sec-11-5">11.5 Restful Services with Clojure</a></li>
-<li><a href="#sec-11-6">11.6 HTML Templating library</a></li>
-<li><a href="#sec-11-7">11.7 REST API library</a></li>
-<li><a href="#sec-11-8">11.8 State Management in projects</a></li>
-<li><a href="#sec-11-9">11.9 Clojurescript introduction (optional)</a></li>
-<li><a href="#sec-11-10">11.10 Deployment</a></li>
+<li><a href="#sec-7-1">7.1. Exploring Macros</a></li>
+<li><a href="#sec-7-2">7.2. Creating our Own Macros</a></li>
+<li><a href="#sec-7-3">7.3. Using Templating to Create Macros</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Data Structures</a>
+<ul>
+<li><a href="#sec-8-1">8.1. The four basic structures:</a></li>
+<li><a href="#sec-8-2">8.2. lists</a></li>
+<li><a href="#sec-8-3">8.3. vectors</a></li>
+<li><a href="#sec-8-4">8.4. maps</a></li>
+<li><a href="#sec-8-5">8.5. sets</a></li>
+<li><a href="#sec-8-6">8.6. Sequences</a></li>
+<li><a href="#sec-8-7">8.7. Lazy Sequences</a></li>
+<li><a href="#sec-8-8">8.8. Operations on sequences (eg map, reduce, filter)</a></li>
+<li><a href="#sec-8-9">8.9. Design Considerations for Clojure programming</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. Polymorphism</a>
+<ul>
+<li><a href="#sec-9-1">9.1. Protocols</a></li>
+<li><a href="#sec-9-2">9.2. Defining and using Types</a></li>
+<li><a href="#sec-9-3">9.3. Defining and using Records</a></li>
+<li><a href="#sec-9-4">9.4. Handling Java with interop</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10. Intro to Concurency</a></li>
+<li><a href="#sec-11">11. Intro to Web Programming with Clojure</a>
+<ul>
+<li><a href="#sec-11-1">11.1. Ring</a></li>
+<li><a href="#sec-11-2">11.2. Compojure</a></li>
+<li><a href="#sec-11-3">11.3. Other foundational libraries</a></li>
+<li><a href="#sec-11-4">11.4. Web Programming with Clojure (contd)</a></li>
+<li><a href="#sec-11-5">11.5. Restful Services with Clojure</a></li>
+<li><a href="#sec-11-6">11.6. HTML Templating library</a></li>
+<li><a href="#sec-11-7">11.7. REST API library</a></li>
+<li><a href="#sec-11-8">11.8. State Management in projects</a></li>
+<li><a href="#sec-11-9">11.9. Clojurescript introduction (optional)</a></li>
+<li><a href="#sec-11-10">11.10. Deployment</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-1" class="outline-2">
+<div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> Intro to Functional Programming with Clojure</h2>
 <div class="outline-text-2" id="text-1">
-
-
-
-</div>
-
-<div id="outline-container-1-1" class="outline-3">
+</div><div id="outline-container-sec-1-1" class="outline-3">
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> What is functional programming</h3>
 <div class="outline-text-3" id="text-1-1">
-
-<p>   Functions are first class objects
-</p><ul>
+<p>
+Functions are first class objects
+</p>
+<ul class="org-ul">
 <li>It can be created on demand.
 </li>
 <li>It can be stored in a data structure.
@@ -264,169 +281,154 @@ for the JavaScript code in this tag.
 <li>It can be returned as the value of a function.
 </li>
 </ul>
-
-
-
 </div>
 
-<div id="outline-container-1-1-1" class="outline-4">
+<div id="outline-container-sec-1-1-1" class="outline-4">
 <h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Why do we need functional programming?</h4>
 <div class="outline-text-4" id="text-1-1-1">
-
-
-
-<p>    
-    In computer science, functional programming is a programming paradigm style of building the structure and elements of computer programs that treats computation as the evaluation of
-    mathematical functions and avoids changing-state and mutable data.
-</p>
 <p>
-    Functional programming makes it easy to implement distributed/parallel computing.
-</p>
-<p>    
-    Moore's law for computing hardware is fluctuating. Processors are not getting faster anymore.
-    More efficient computing is achieved by adding more cores.
+In computer science, functional programming is a programming paradigm style of building the structure and elements of computer programs that treats computation as the evaluation of
+mathematical functions and avoids changing-state and mutable data.
 </p>
 
+<p>
+Functional programming makes it easy to implement distributed/parallel computing.
+</p>
+
+<p>
+Moore's law for computing hardware is fluctuating. Processors are not getting faster anymore.
+More efficient computing is achieved by adding more cores.
+</p>
+</div>
 </div>
 </div>
 
-</div>
 
-<div id="outline-container-1-2" class="outline-3">
+<div id="outline-container-sec-1-2" class="outline-3">
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> Higher order functions</h3>
 <div class="outline-text-3" id="text-1-2">
-
-<p>   Functions that can take functions or values as an input and return a new function or functions as output.
+<p>
+Functions that can take functions or values as an input and return a new function or functions as output.
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-1-3" class="outline-3">
+<div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3"><span class="section-number-3">1.3</span> Anonymous Functions</h3>
 <div class="outline-text-3" id="text-1-3">
-
-<p>   Anonymous functtions are functions without an identity or a name.
-   These type of functions are commonly used as callbacks for an event where no other reference is needed.
-   Another use case for anonymous functions is using it as a filter for a data set or applying a functional transformation for a set of data
+<p>
+Anonymous functtions are functions without an identity or a name.
+These type of functions are commonly used as callbacks for an event where no other reference is needed.
+Another use case for anonymous functions is using it as a filter for a data set or applying a functional transformation for a set of data
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-1-4" class="outline-3">
+<div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4"><span class="section-number-3">1.4</span> Functional composition</h3>
 <div class="outline-text-3" id="text-1-4">
-
-<p>   "Function Composition" is applying one function to the results of another.
-   You can have a pipe line of functions through which data is passed through. And this pipe line can be termed as a new function.
-   You can create a new function from a set of functions.
+<p>
+"Function Composition" is applying one function to the results of another.
+You can have a pipe line of functions through which data is passed through. And this pipe line can be termed as a new function.
+You can create a new function from a set of functions.
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-1-5" class="outline-3">
+<div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5"><span class="section-number-3">1.5</span> Pure functions and immutablilty</h3>
 <div class="outline-text-3" id="text-1-5">
-
+<p>
+Pure function is a function which has no side effects. It does not depend on any external entities.
+For every input, there is only one out put
+Example: Area of a circle = pi*r*r
+</p>
 
 <p>
-   Pure function is a function which has no side effects. It does not depend on any external entities.
-   For every input, there is only one out put
-   Example: Area of a circle = pi*r*r
+Examples of impure functions: current time, or time related functions. Database operations. File operations or reading data from an external API
 </p>
-<p>   
-   Examples of impure functions: current time, or time related functions. Database operations. File operations or reading data from an external API
-</p>
-
+</div>
 </div>
 
-</div>
 
-<div id="outline-container-1-6" class="outline-3">
+<div id="outline-container-sec-1-6" class="outline-3">
 <h3 id="sec-1-6"><span class="section-number-3">1.6</span> Map Reduce Filter</h3>
 <div class="outline-text-3" id="text-1-6">
-
-
 <p>
-   Map reduce is a programming model. A map reduce approach helps in distributed computing.
+Map reduce is a programming model. A map reduce approach helps in distributed computing.
 </p>
-
 </div>
 
-<div id="outline-container-1-6-1" class="outline-4">
+<div id="outline-container-sec-1-6-1" class="outline-4">
 <h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> Map</h4>
 <div class="outline-text-4" id="text-1-6-1">
+<p>
+Common syntax:
+</p>
 
-<p>    Common syntax:
-</p>
-<p>    
-    map-&gt;function-&gt;data set
-</p>
 <p>
-    Outputs a set of data
+map-&gt;function-&gt;data set
 </p>
-<p>    
-    Function in a map accepts a value or another function.
-</p>
+
 <p>
-    Example case: Increment every value in an array by one
+Outputs a set of data
 </p>
+
 <p>
-    syntax: map increment-function array
+Function in a map accepts a value or another function.
+</p>
+
+<p>
+Example case: Increment every value in an array by one
+</p>
+
+<p>
+syntax: map increment-function array
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-1-6-2" class="outline-4">
+<div id="outline-container-sec-1-6-2" class="outline-4">
 <h4 id="sec-1-6-2"><span class="section-number-4">1.6.2</span> Reduce</h4>
 <div class="outline-text-4" id="text-1-6-2">
-
-<p>    Common syntax:
-</p>
 <p>
-    reduce-&gt;function &lt;optional initial value&gt; -&gt; data set
-</p>
-<p>    
-    Reduce function accepts two values, previous value and next value
-    Returns a single output entity which is a reduced form of dataset
+Common syntax:
 </p>
 
+<p>
+reduce-&gt;function &lt;optional initial value&gt; -&gt; data set
+</p>
 
+<p>
+Reduce function accepts two values, previous value and next value
+Returns a single output entity which is a reduced form of dataset
+</p>
+</div>
 </div>
 </div>
 </div>
 
-</div>
 
-<div id="outline-container-2" class="outline-2">
+
+<div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="section-number-2">2</span> Intoduction to Clojure</h2>
 <div class="outline-text-2" id="text-2">
-
-
-
-</div>
-
-<div id="outline-container-2-1" class="outline-3">
+</div><div id="outline-container-sec-2-1" class="outline-3">
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> What is Clojure</h3>
 <div class="outline-text-3" id="text-2-1">
-
-<p>   Clojure is a general purpose, compiled, dynamic, functional programming language.
-   Clojure is a member of the Lisp family of languages.
-   Lisp was a revolutionary programming language which first appeared in 1958 and was too advanced at that time.
-   Lisp was originally created as a practical mathematical notation for computer programs, influenced by lambda calculus
+<p>
+Clojure is a general purpose, compiled, dynamic, functional programming language.
+Clojure is a member of the Lisp family of languages.
+Lisp was a revolutionary programming language which first appeared in 1958 and was too advanced at that time.
+Lisp was originally created as a practical mathematical notation for computer programs, influenced by lambda calculus
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-2-2" class="outline-3">
+<div id="outline-container-sec-2-2" class="outline-3">
 <h3 id="sec-2-2"><span class="section-number-3">2.2</span> Advantages of Clojure</h3>
 <div class="outline-text-3" id="text-2-2">
-
-<ul>
+<ul class="org-ul">
 <li>Clojure is simple. <b>Simple is elegant, simple is beautiful.</b>
 </li>
 <li>Clojure uses lesser lines of code. Anywhere between 10-20x lesser lines of code than Java.
@@ -440,24 +442,20 @@ for the JavaScript code in this tag.
 <li>Clojure REPL helps in interactive development
 </li>
 <li>Clojure runs on JVM
-     It can take advantage of highly optimized JVM and its garbage collector. It can utilize Java libraries
+It can take advantage of highly optimized JVM and its garbage collector. It can utilize Java libraries
 </li>
 <li>Clojure can be used as a replacement for javascript in the front end
 </li>
 </ul>
-
-
-
-
+</div>
 </div>
 
-</div>
 
-<div id="outline-container-2-3" class="outline-3">
+
+<div id="outline-container-sec-2-3" class="outline-3">
 <h3 id="sec-2-3"><span class="section-number-3">2.3</span> Disadvantages of Clojure</h3>
 <div class="outline-text-3" id="text-2-3">
-
-<ul>
+<ul class="org-ul">
 <li>Major shift in programming model.
 </li>
 <li>Lisp syntax is different and some people never gets it.
@@ -465,19 +463,17 @@ for the JavaScript code in this tag.
 <li>Relatively new technology. Released in 2007 and fewer libraries and developers
 </li>
 </ul>
-
-
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-2-4" class="outline-3">
+<div id="outline-container-sec-2-4" class="outline-3">
 <h3 id="sec-2-4"><span class="section-number-3">2.4</span> Installing Clojure</h3>
 <div class="outline-text-3" id="text-2-4">
-
-<p>   Using Leiningen <a href="http://leiningen.org/">http://leiningen.org/</a>
+<p>
+Using Leiningen <a href="http://leiningen.org/">http://leiningen.org/</a>
 </p>
-<ol>
+
+<ol class="org-ol">
 <li>Download the lein script (or on Windows lein.bat)
 </li>
 <li>Place it on your $PATH where your shell can find it (eg. ~/bin)
@@ -486,39 +482,34 @@ for the JavaScript code in this tag.
 </li>
 <li>Run it (lein) and it will download the self-install package
 
+<div class="org-src-container">
 
-
-
-<pre class="example">lein new &lt;project-name&gt;
+<pre class="src src-bash">lein new &lt;project-name&gt;
 </pre>
-
+</div>
 </li>
 </ol>
-
-<p>   This command will start a new project
+<p>
+This command will start a new project
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-2-5" class="outline-3">
+<div id="outline-container-sec-2-5" class="outline-3">
 <h3 id="sec-2-5"><span class="section-number-3">2.5</span> Tooling</h3>
 <div class="outline-text-3" id="text-2-5">
-
-
-
-</div>
-
-<div id="outline-container-2-5-1" class="outline-4">
+</div><div id="outline-container-sec-2-5-1" class="outline-4">
 <h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> IDE</h4>
 <div class="outline-text-4" id="text-2-5-1">
+<p>
+Clojure syntax is very simple that you don't actually need an IDE. You can do Clojure development in a simple text editor.
+</p>
 
-<p>    Clojure syntax is very simple that you don't actually need an IDE. You can do Clojure development in a simple text editor.
+<p>
+Recommended editors/IDE:
 </p>
-<p>    
-    Recommended editors/IDE:
-</p>
-<ol>
+
+<ol class="org-ol">
 <li>Emacs: <b>Unlimited awesomeness</b> <a href="https://www.gnu.org/software/emacs/">https://www.gnu.org/software/emacs/</a>
        Emacs is built with a Lisp. Highly customizable. Steeper learning curve.
 </li>
@@ -527,135 +518,119 @@ for the JavaScript code in this tag.
 <li>Eclipse + Counterclockwise <b>For the enterprise developer who is already working on Java</b> <a href="http://doc.ccw-ide.org/documentation.html">http://doc.ccw-ide.org/documentation.html</a>
 </li>
 </ol>
-
-
-
+</div>
 </div>
 </div>
 </div>
 
-</div>
 
-<div id="outline-container-3" class="outline-2">
+<div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3"><span class="section-number-2">3</span> Basic Clojure Syntax and REPL</h2>
 <div class="outline-text-2" id="text-3">
-
-
-
-</div>
-
-<div id="outline-container-3-1" class="outline-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
 <h3 id="sec-3-1"><span class="section-number-3">3.1</span> Lisp syntax</h3>
 <div class="outline-text-3" id="text-3-1">
-
-<p>   Clojure is a homoiconic language, which means Clojure code itself is a data (list). Clojure code is executed by evaluating a data structure. Clojure code can modify, transform and create other Clojure programs.
-   <b>Programs creating programs.</b>
-   Recommended Reading for more enlightenment: <a href="http://clojure.org/reference/reader">http://clojure.org/reference/reader</a>
+<p>
+Clojure is a homoiconic language, which means Clojure code itself is a data (list). Clojure code is executed by evaluating a data structure. Clojure code can modify, transform and create other Clojure programs.
+<b>Programs creating programs.</b>
+Recommended Reading for more enlightenment: <a href="http://clojure.org/reference/reader">http://clojure.org/reference/reader</a>
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-3-2" class="outline-3">
+<div id="outline-container-sec-3-2" class="outline-3">
 <h3 id="sec-3-2"><span class="section-number-3">3.2</span> The REPL</h3>
 <div class="outline-text-3" id="text-3-2">
-
-<p>   <b>The Read Eval Print Loop</b> 
-   Clojure REPL is an interactive shell which can be connected to a running program and modifications can be made and tested on a live program.
-</p>
-<p>   
-   Staring a REPL
-</p>
-<p>   
-   cd into your project folder
+<p>
+<b>The Read Eval Print Loop</b> 
+Clojure REPL is an interactive shell which can be connected to a running program and modifications can be made and tested on a live program.
 </p>
 
+<p>
+Staring a REPL
+</p>
 
-<pre class="example">lein repl
+<p>
+cd into your project folder
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">lein repl
 </pre>
-
-
-
+</div>
+</div>
 </div>
 
-</div>
 
-<div id="outline-container-3-3" class="outline-3">
+<div id="outline-container-sec-3-3" class="outline-3">
 <h3 id="sec-3-3"><span class="section-number-3">3.3</span> Code execution and Project Structure</h3>
 <div class="outline-text-3" id="text-3-3">
-
-
 <p>
-    Creating a project:
+Creating a project:
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example">lein new &lt;project-name&gt;
+<pre class="src src-bash">lein new &lt;project-name&gt;
 </pre>
-
-
-<p>    
-    Running a project 
-</p>
-
-
-
-<pre class="example">lein run
-</pre>
-
-
-<p>
-    The "main" entry point will be executed.
-</p>
-<p>
-    The main entry point is defined in the project.clj file in the project folder {:main tutorial.core}
-</p>
-<p>    
-    Clojure code is organized similar to JAVA projects
-</p>
-
-
 </div>
 
-<div id="outline-container-3-3-1" class="outline-4">
+<p>
+Running a project 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">lein run
+</pre>
+</div>
+
+<p>
+The "main" entry point will be executed.
+</p>
+
+<p>
+The main entry point is defined in the project.clj file in the project folder {:main tutorial.core}
+</p>
+
+<p>
+Clojure code is organized similar to JAVA projects
+</p>
+</div>
+
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
 <h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Source code</h4>
 <div class="outline-text-4" id="text-3-3-1">
-
-<p>    Source code path is defined in project as {:source-paths ["src/clj"]}
-    It is a common practice to put all the clojure source code inside "src/clj". 
-</p>
-<p>    
-    Clojure project may contain java source code or clojurescript source code. They will be put inside "src/java" or "src/cljs" directories.
-</p>
 <p>
-    Java source code path must be defined using the key :java-source-paths
-    Java source code path example :java-source-paths ["src/java"]
+Source code path is defined in project as {:source-paths ["src/clj"]}
+It is a common practice to put all the clojure source code inside "src/clj". 
+</p>
+
+<p>
+Clojure project may contain java source code or clojurescript source code. They will be put inside "src/java" or "src/cljs" directories.
+</p>
+
+<p>
+Java source code path must be defined using the key :java-source-paths
+Java source code path example :java-source-paths ["src/java"]
 </p>
 </div>
 </div>
 </div>
-
 </div>
 
-<div id="outline-container-4" class="outline-2">
+<div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4"><span class="section-number-2">4</span> Clojure Namespaces</h2>
 <div class="outline-text-2" id="text-4">
-
-
-
-
-</div>
-
-<div id="outline-container-4-1" class="outline-3">
+</div><div id="outline-container-sec-4-1" class="outline-3">
 <h3 id="sec-4-1"><span class="section-number-3">4.1</span> What is a namespace?</h3>
 <div class="outline-text-3" id="text-4-1">
-
-
-<p>   
-   Namespace is a structural identity of a source code file.
+<p>
+Namespace is a structural identity of a source code file.
 </p>
-<ul>
+
+<ul class="org-ul">
 <li>What def does
 </li>
 <li>What namespaces are and how to use them
@@ -667,28 +642,23 @@ for the JavaScript code in this tag.
 <li>How to organize Clojure projects using the filesystem
 </li>
 </ul>
-
-
-
+</div>
 </div>
 
-</div>
 
-<div id="outline-container-4-2" class="outline-3">
+<div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2"><span class="section-number-3">4.2</span> The 'user' namespace</h3>
 <div class="outline-text-3" id="text-4-2">
-
-<p>   When you start the REPL, for example, you are in the user namespace
+<p>
+When you start the REPL, for example, you are in the user namespace
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-4-3" class="outline-3">
+<div id="outline-container-sec-4-3" class="outline-3">
 <h3 id="sec-4-3"><span class="section-number-3">4.3</span> Using code in other namespaces</h3>
 <div class="outline-text-3" id="text-4-3">
-
-<ul>
+<ul class="org-ul">
 <li>require (strict)
 </li>
 <li>use (import everything into this namespace)
@@ -696,639 +666,752 @@ for the JavaScript code in this tag.
 <li>refer (refer particular functions only)
 </li>
 </ul>
-
-
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-4-4" class="outline-3">
+<div id="outline-container-sec-4-4" class="outline-3">
 <h3 id="sec-4-4"><span class="section-number-3">4.4</span> require, use, and import</h3>
 <div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
 
-
-
-
-
-<pre class="example">(ns myproject.core
+<pre class="src src-clojure">(ns myproject.core
  (:use [clojure.core] :reload)
  (:require [clojure.string :as str :refer [replace]] :reload-all))
 
  (str/replace "foo" #"o" "e")
 "fee"
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-4-5" class="outline-3">
+<div id="outline-container-sec-4-5" class="outline-3">
 <h3 id="sec-4-5"><span class="section-number-3">4.5</span> Reloading namespaces</h3>
 <div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
 
-
-
-
-<pre class="example">user=&gt; (use '[clojure.tools.namespace.repl :only (refresh)])
+<pre class="src src-bash">user=&gt; (use '[clojure.tools.namespace.repl :only (refresh)])
 
 user=&gt; (refresh)
 
 :reloading (namespace.app)
 
 :ok
-
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-4-6" class="outline-3">
+<div id="outline-container-sec-4-6" class="outline-3">
 <h3 id="sec-4-6"><span class="section-number-3">4.6</span> The namespace declaration</h3>
 <div class="outline-text-3" id="text-4-6">
-
-<p>   (ns directory-path.filename)
+<p>
+(ns directory-path.filename)
 </p>
 </div>
 </div>
-
 </div>
 
-<div id="outline-container-5" class="outline-2">
+<div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> Working with Java Code &amp; Clojure</h2>
 <div class="outline-text-2" id="text-5">
-
-
-
-</div>
-
-<div id="outline-container-5-1" class="outline-3">
+</div><div id="outline-container-sec-5-1" class="outline-3">
 <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Importing Java packages</h3>
-<div class="outline-text-3" id="text-5-1">
-
 </div>
-
-</div>
-
-<div id="outline-container-5-2" class="outline-3">
+<div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2"><span class="section-number-3">5.2</span> Using static class members</h3>
-<div class="outline-text-3" id="text-5-2">
-
 </div>
-
-</div>
-
-<div id="outline-container-5-3" class="outline-3">
+<div id="outline-container-sec-5-3" class="outline-3">
 <h3 id="sec-5-3"><span class="section-number-3">5.3</span> Creating objects</h3>
-<div class="outline-text-3" id="text-5-3">
-
 </div>
-
-</div>
-
-<div id="outline-container-5-4" class="outline-3">
+<div id="outline-container-sec-5-4" class="outline-3">
 <h3 id="sec-5-4"><span class="section-number-3">5.4</span> Calling instance methods</h3>
-<div class="outline-text-3" id="text-5-4">
-
-
-
 </div>
 </div>
 
-</div>
 
-<div id="outline-container-6" class="outline-2">
+<div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6"><span class="section-number-2">6</span> More Clojure Syntax</h2>
 <div class="outline-text-2" id="text-6">
-
-
-
-</div>
-
-<div id="outline-container-6-1" class="outline-3">
+</div><div id="outline-container-sec-6-1" class="outline-3">
 <h3 id="sec-6-1"><span class="section-number-3">6.1</span> Execution (do, doseq, dotimes)</h3>
 <div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
 
-
-
-
-
-
-<pre class="example">(do  something)
+<pre class="src src-clojure">(do  something)
 </pre>
+</div>
 
 
+<div class="org-src-container">
 
-
-
-
-<pre class="example">(doseq [each all]
+<pre class="src src-clojure">(doseq [each all]
   (do-something each))
 </pre>
+</div>
 
 
+<div class="org-src-container">
 
-
-<pre class="example">(dotimes [n 5] (println "n is" n))
+<pre class="src src-clojure">(dotimes [n 5] (println "n is" n))
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-6-2" class="outline-3">
+<div id="outline-container-sec-6-2" class="outline-3">
 <h3 id="sec-6-2"><span class="section-number-3">6.2</span> Conditionals (if, cond, condp, case)</h3>
 <div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
 
-
-
-
-<pre class="example">(if test then else?) 
+<pre class="src src-clojure">(if test then else?)
 </pre>
+</div>
 
-
-<p>   
-   OR
+<p>
+OR
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example">(if test then)
+<pre class="src src-clojure">(if test then)
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-6-3" class="outline-3">
+<div id="outline-container-sec-6-3" class="outline-3">
 <h3 id="sec-6-3"><span class="section-number-3">6.3</span> Iteration (while, for, loop)</h3>
 <div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
 
-
-
-
-
-<pre class="example">(while condition
+<pre class="src src-clojure">(while condition
 (do-somthing))
 </pre>
-
+</div>
 
 <p>
 <b>for</b>
 </p>
+
 <p>
 List comprehension. Takes a vector of one or more
  binding-form/collection-expr pairs, each followed by zero or more
  modifiers, and yields a lazy sequence of evaluations of expr.
  Collections are iterated in a nested fashion, rightmost fastest,
  and nested coll-exprs can refer to bindings created in prior
- binding-forms.  Supported modifiers are: :let [binding-form expr &hellip;],
- :while test, :when test.
- (take 100 (for [x (range 100000000) y (range 1000000) :while (&lt; y x)] [x y]))
+ binding-forms.  Supported modifiers are: :let [binding-form expr &#x2026;],
+</p>
+<p>
+:while test, :when test.
+(take 100 (for [x (range 100000000) y (range 1000000) :while (&lt; y x)] [x y]))
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example">(for [x [0 1 2 3 4 5]
+<pre class="src src-clojure">(for [x [0 1 2 3 4 5]
       :let [y (* x 3)]
       :when (even? y)]
   y)
-
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-6-4" class="outline-3">
+<div id="outline-container-sec-6-4" class="outline-3">
 <h3 id="sec-6-4"><span class="section-number-3">6.4</span> Recursion</h3>
 <div class="outline-text-3" id="text-6-4">
-
-<p>   Factorial Example:
+<p>
+Factorial Example:
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example"> (defn fact[x]
+<pre class="src src-clojure"> (defn fact[x]
 (if (&lt;= x 1) 1 (* x  (fact (- x 1))  )))
 </pre>
-
+</div>
 
 <p>
-   Use recursion only when no other way is possible. Most of the time you can use <b>reduce</b> operation to attain the same result
+Use recursion only when no other way is possible. Most of the time you can use <b>reduce</b> operation to attain the same result
 </p>
+
 <p>
-   Alternate way of implementing factorial without recursion:
+Alternate way of implementing factorial without recursion:
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example">(defn fact[n]
+<pre class="src src-clojure">(defn fact[n]
 (if (= 0 n) 1 (reduce * (range 1 (inc n)))))
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-6-5" class="outline-3">
+<div id="outline-container-sec-6-5" class="outline-3">
 <h3 id="sec-6-5"><span class="section-number-3">6.5</span> Tail recursion</h3>
 <div class="outline-text-3" id="text-6-5">
-
-<p>   Factorial example:
+<p>
+Factorial example:
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example">(defn fact [x]
+<pre class="src src-clojure">(defn fact [x]
  (loop [n x f 1]
      (if (= n 1)
-         f
-         (recur (dec n) (* f n)))))
+	 f
+	 (recur (dec n) (* f n)))))
 </pre>
+</div>
 
-
-<p>   
-   Clojure will do tail-call optimization for this; that ensures that you will never run into StackOverflowErrors.
+<p>
+Clojure will do tail-call optimization for this; that ensures that you will never run into StackOverflowErrors.
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-6-6" class="outline-3">
+<div id="outline-container-sec-6-6" class="outline-3">
 <h3 id="sec-6-6"><span class="section-number-3">6.6</span> Exception handling</h3>
 <div class="outline-text-3" id="text-6-6">
-
-
-<p>   
-   The exprs are evaluated and, if no exceptions occur, the value of the last
-   is returned. If an exception occurs and catch clauses are provided, each is
-   examined in turn and the first for which the thrown exception is an instance
-   of the named class is considered a matching catch clause
+<p>
+The exprs are evaluated and, if no exceptions occur, the value of the last
+is returned. If an exception occurs and catch clauses are provided, each is
+examined in turn and the first for which the thrown exception is an instance
+of the named class is considered a matching catch clause
 </p>
 
+<div class="org-src-container">
 
-
-<pre class="example">(try
+<pre class="src src-clojure">(try
   (/ 1 0)
   (catch Exception e (str "caught exception: " (.getMessage e))))
 </pre>
-
-
+</div>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-6-7" class="outline-3">
+<div id="outline-container-sec-6-7" class="outline-3">
 <h3 id="sec-6-7"><span class="section-number-3">6.7</span> Destructuring</h3>
 <div class="outline-text-3" id="text-6-7">
+<div class="org-src-container">
 
-
-
-
-
-<pre class="example">user=&gt; (def point [5 7])
+<pre class="src src-bash">user=&gt; (def point [5 7])
 #'user/point
 
 user=&gt; (let [[x y] point]
-         (println "x:" x "y:" y))
+	 (println "x:" x "y:" y))
 x: 5 y: 7
 </pre>
-
-
 </div>
 
+<div class="org-src-container">
+
+<pre class="src src-clojure">Simply put, destructuring in Clojure is a way extract values from a datastructure and bind them to symbols,
+
+without having to explicitly traverse the datstructure. It allows for elegant and concise Clojure code.
+
+Vectors
+
+Syntax: [symbol another-symbol] ["value" "another-value"]
+
+(def my-vector [:a :b :c :d])
+(def my-nested-vector [:a :b :c :d [:x :y :z]])
+
+(let [[a b c d] my-vector]
+  (println a b c d))
+;; =&gt; :a :b :c :d
+
+(let [[a _ _ d [x y z]] my-nested-vector]
+  (println a d x y z))
+;; =&gt; :a :d :x :y :z
+You don't have to match the full vector.
+
+(let [[a b c] my-vector]
+  (println a b c))
+;; =&gt; :a :b :c
+
+;;You can use &amp; the-rest to bind the remaining part of the vector to the-rest.
+
+(let [[a b &amp; the-rest] my-vector]
+  (println a b the-rest))
+;; =&gt; :a :b (:c :d)
+;;When a destructuring form "exceeds" a vector (i.e. there not enough items in the vector to bind to), the excess symbols will be bound to nil.
+
+(let [[a b c d e f g] my-vector]
+  (println a b c d e f g))
+;; =&gt; :a :b :c :d nil nil nil
+;;You can use :as some-symbol as the last two items in the destructuring form to bind the whole vector to some-symbol
+
+(let [[:as all] my-vector]
+  (println all))
+;; =&gt; [:a :b :c :d]
+
+(let [[a :as all] my-vector]
+  (println a all))
+;; =&gt; :a [:a :b :c :d]
+
+(let [[a _ _ _ [x y z :as nested] :as all] my-nested-vector]
+  (println a x y z nested all))
+;; =&gt; :a :x :y :z [:x :y :z] [:a :b :c :d [:x :y :z]]
+;;You can use both &amp; the-rest and :as some-symbol.
+
+(let [[a b &amp; the-rest :as all] my-vector]
+  (println a b the-rest all))
+;; =&gt; :a :b (:c :d) [:a :b :c :d]
+;;Optional arguments for functions
+
+;;With destructuring and the &amp; the-rest form, you can specify optional arguments to functions.
+
+(defn foo [a b &amp; more-args]
+  (println a b more-args))
+(foo :a :b) ;; =&gt; :a :b nil
+(foo :a :b :x) ;; =&gt; :a :b (:x)
+(foo :a :b :x :y :z) ;; =&gt; :a :b (:x :y :z)
+
+(defn foo [a b &amp; [x y z]]
+  (println a b x y z))
+(foo :a :b) ;; =&gt; :a :b nil nil nil
+(foo :a :b :x) ;; =&gt; :a :b :x nil nil
+(foo :a :b :x :y :z) ;; =&gt; :a :b :x :y :z
+
+;;Maps
+
+;;Syntax: {symbol :key, another-symbol :another-key} {:key "value" :another-key "another-value"}
+
+(def my-hashmap {:a "A" :b "B" :c "C" :d "D"})
+(def my-nested-hashmap {:a "A" :b "B" :c "C" :d "D" :q {:x "X" :y "Y" :z "Z"}})
+
+(let [{a :a d :d} my-hashmap]
+  (println a d))
+;; =&gt; A D
+
+(let [{a :a, b :b, {x :x, y :y} :q} my-nested-hashmap]
+  (println a b x y))
+;; =&gt; A B X Y
+;;Similar to vectors, if a key is not found in the map, the symbol will be bound to nil.
+
+(let [{a :a, not-found :not-found, b :b} my-hashmap]
+  (println a not-found b))
+;; =&gt; A nil B
+;;You can provide an optional default value for these missing keys with the :or keyword and a map of default values.
+
+(let [{a :a, not-found :not-found, b :b, :or {not-found ":)"}} my-hashmap]
+  (println a not-found b))
+;; =&gt; A :) B
+;;The :as some-symbol form is also available for maps, but unlike vectors it can be specified anywhere (but still preferred to be the last two pairs).
+
+(let [{a :a, b :b, :as all} my-hashmap]
+  (println a b all))
+;; =&gt; A B {:a A :b B :c C :d D}
+;;And combining :as and :or keywords (again, :as preferred to be the last).
+
+(let [{a :a, b :b, not-found :not-found, :or {not-found ":)"}, :as all} my-hashmap]
+  (println a b not-found all))
+;; =&gt; A B :) {:a A :b B :c C :d D}
+;;There is no &amp; the-rest for maps.
+
+;;Shortcuts
+
+;;Having to specify {symbol :symbol} for each key is repetitive and verbose (it's almost always going to be the symbol equivalent of the key), so shortcuts are provided so you only have to type the symbol once.
+
+;;Here are all the previous examples using the :keys keyword followed by a vector of symbols:
+
+(let [{:keys [a d]} my-hashmap]
+  (println a d))
+;; =&gt; A D
+
+(let [{:keys [a b], {:keys [x y]} :q} my-nested-hashmap]
+  (println a b x y))
+;; =&gt; A B X Y
+
+(let [{:keys [a not-found b]} my-hashmap]
+  (println a not-found b))
+;; =&gt; A nil B
+
+(let [{:keys [a not-found b], :or {not-found ":)"}} my-hashmap]
+  (println a not-found b))
+;; =&gt; A :) B
+
+(let [{:keys [a b], :as all} my-hashmap]
+  (println a b all))
+;; =&gt; A B {:a A :b B :c C :d D}
+
+(let [{:keys [a b not-found], :or {not-found ":)"}, :as all} my-hashmap]
+  (println a b not-found all))
+;; =&gt; A B :) {:a A :b B :c C :d D}
+;;There are also :strs and :syms alternatives, for when your map has strings or symbols for keys (instead of keywords), respectively.
+
+(let [{:strs [a d]} {"a" "A", "b" "B", "c" "C", "d" "D"}]
+  (println a d))
+;; =&gt; A D
+
+(let [{:syms [a d]} {'a "A", 'b "B", 'c "C", 'd "D"}]
+  (println a d))
+;; =&gt; A D
+;;Keyword arguments for function
+
+;;Map destructuring also works with lists (but not vectors).
+
+(let [{:keys [a b]} '("X", "Y", :a "A", :b "B")]
+(println a b))
+;; =&gt; A B
+;;This allows your functions to have optional keyword arguments.
+
+(defn foo [a b &amp; {:keys [x y]}]
+  (println a b x y))
+(foo "A" "B")  ;; =&gt; A B nil nil
+(foo "A" "B" :x "X")  ;; =&gt; A B X nil
+(foo "A" "B" :x "X" :y "Y")  ;; =&gt; A B X Y
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-6-8" class="outline-3">
-<h3 id="sec-6-8"><span class="section-number-3">6.8</span> Using :keys and :or Named arguments</h3>
+<div id="outline-container-sec-6-8" class="outline-3">
+<h3 id="sec-6-8"><span class="section-number-3">6.8</span> Using keys and or Named arguments</h3>
 <div class="outline-text-3" id="text-6-8">
+<div class="org-src-container">
 
-
-
-</div>
-</div>
-
+<pre class="src src-clojure">(keys map)
+</pre>
 </div>
 
-<div id="outline-container-7" class="outline-2">
+<p>
+Returns all keys of the map
+</p>
+
+
+<p>
+Logical operators
+</p>
+
+<p>
+(and cond1 cond2 &#x2026;.)
+</p>
+
+
+<p>
+(or cond1 cond2 &#x2026;.)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7"><span class="section-number-2">7</span> Macros</h2>
 <div class="outline-text-2" id="text-7">
-
-
-
-</div>
-
-<div id="outline-container-7-1" class="outline-3">
+</div><div id="outline-container-sec-7-1" class="outline-3">
 <h3 id="sec-7-1"><span class="section-number-3">7.1</span> Exploring Macros</h3>
 <div class="outline-text-3" id="text-7-1">
+<p>
+The number one rule of Macros: <b>Don't use macros</b>
+</p>
 
-<p>   The number one rule of Macros: <b>Don't use macros</b>
-</p>
 <p>
-   Most of the problems can be solved using functional programming. Use macros only if you need to create a DSL
-   like a query language for a particular Database or a very specific functionality set that is repeated very often.
+Most of the problems can be solved using functional programming. Use macros only if you need to create a DSL
+like a query language for a particular Database or a very specific functionality set that is repeated very often.
 </p>
+
 <p>
-   99% of the time you don't need macros
+99% of the time you don't need macros
 </p>
 </div>
-
 </div>
 
-<div id="outline-container-7-2" class="outline-3">
+
+
+
+<div id="outline-container-sec-7-2" class="outline-3">
 <h3 id="sec-7-2"><span class="section-number-3">7.2</span> Creating our Own Macros</h3>
 <div class="outline-text-3" id="text-7-2">
+<p>
+Macro definitions look much like function definitions.
+They have a name, an optional document string, an argument list, and a body.
+The body will almost always return a list.
+This makes sense because macros are a way of transforming a data structure into a form Clojure can evaluate, and Clojure uses lists to represent function calls, special form calls, and macro calls.
+You can use any function, macro, or special form within the macro body, and you call macros just like you would a function or special form.
+</p>
 
+<div class="org-src-container">
 
+<pre class="src src-clojure">(defmacro infix
+ [infixed]
+  (list (second infixed) (first infixed) (last infixed)))
+</pre>
 </div>
 
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(infix (1 + 1))
+; =&gt; 2
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-7-3" class="outline-3">
+
+
+
+<div id="outline-container-sec-7-3" class="outline-3">
 <h3 id="sec-7-3"><span class="section-number-3">7.3</span> Using Templating to Create Macros</h3>
 <div class="outline-text-3" id="text-7-3">
-
-
-
+<p>
+Use: list quote..etc
+</p>
 </div>
 </div>
-
 </div>
 
-<div id="outline-container-8" class="outline-2">
+<div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8"><span class="section-number-2">8</span> Data Structures</h2>
 <div class="outline-text-2" id="text-8">
-
-
-</div>
-
-<div id="outline-container-8-1" class="outline-3">
+</div><div id="outline-container-sec-8-1" class="outline-3">
 <h3 id="sec-8-1"><span class="section-number-3">8.1</span> The four basic structures:</h3>
-<div class="outline-text-3" id="text-8-1">
-
 </div>
-
-</div>
-
-<div id="outline-container-8-2" class="outline-3">
+<div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2"><span class="section-number-3">8.2</span> lists</h3>
 <div class="outline-text-3" id="text-8-2">
-
-<p>   Everything is a list. Even clojure source code is a list
+<p>
+Everything is a list. Even clojure source code is a list
 </p>
 
+<p>
+enclosed in a ()
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-8-3" class="outline-3">
+<div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3"><span class="section-number-3">8.3</span> vectors</h3>
 <div class="outline-text-3" id="text-8-3">
-
-<p>   Similar to arrays.
-</p>
-<p>   
-   Example:
+<p>
+Similar to arrays.
 </p>
 
+<p>
+Example:
+[1 2 3 4 5]
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-8-4" class="outline-3">
+<div id="outline-container-sec-8-4" class="outline-3">
 <h3 id="sec-8-4"><span class="section-number-3">8.4</span> maps</h3>
 <div class="outline-text-3" id="text-8-4">
-
-<p>   {:key value}
-</p></div>
-
+<p>
+{:key value}
+</p>
+</div>
 </div>
 
-<div id="outline-container-8-5" class="outline-3">
+<div id="outline-container-sec-8-5" class="outline-3">
 <h3 id="sec-8-5"><span class="section-number-3">8.5</span> sets</h3>
 <div class="outline-text-3" id="text-8-5">
-
-<p>   Sets
-</p>
 <p>
 Sets are collections of unique values.
 </p>
+
 <p>
 There is literal support for hash-sets:
 </p>
+
 <p>
 #{:a :b :c :d}
 -&gt; #{:d :a :b :c}
 You can create sets with the hash-set and sorted-set functions:
 </p>
+
 <p>
 (hash-set :a :b :c :d)
 -&gt; #{:d :a :b :c}
 </p>
+
 <p>
 (sorted-set :a :b :c :d)
 -&gt; #{:a :b :c :d}
 You can also get a set of the values in a collection using the set function:
 </p>
-
+</div>
 </div>
 
-</div>
 
-<div id="outline-container-8-6" class="outline-3">
+<div id="outline-container-sec-8-6" class="outline-3">
 <h3 id="sec-8-6"><span class="section-number-3">8.6</span> Sequences</h3>
 <div class="outline-text-3" id="text-8-6">
-
-
-<p>   
-   A logical list
-</p></div>
-
+<p>
+A logical list
+</p>
+</div>
 </div>
 
-<div id="outline-container-8-7" class="outline-3">
+<div id="outline-container-sec-8-7" class="outline-3">
 <h3 id="sec-8-7"><span class="section-number-3">8.7</span> Lazy Sequences</h3>
-<div class="outline-text-3" id="text-8-7">
-
 </div>
 
-</div>
 
-<div id="outline-container-8-8" class="outline-3">
+<div id="outline-container-sec-8-8" class="outline-3">
 <h3 id="sec-8-8"><span class="section-number-3">8.8</span> Operations on sequences (eg map, reduce, filter)</h3>
 <div class="outline-text-3" id="text-8-8">
+<p>
+(map function sequence)
+</p>
+
+<p>
+(reduce function sequence)
+</p>
 
 
+<p>
+(filter function sequence)
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-8-9" class="outline-3">
+<div id="outline-container-sec-8-9" class="outline-3">
 <h3 id="sec-8-9"><span class="section-number-3">8.9</span> Design Considerations for Clojure programming</h3>
 <div class="outline-text-3" id="text-8-9">
-
-
+<ul class="org-ul">
+<li>Keep it simple
+</li>
+<li>Most of the time use pure functions
+</li>
+<li>Avoid mutable states
+</li>
+<li>Avoid circular dependencies
+</li>
+</ul>
 </div>
 </div>
-
 </div>
 
-<div id="outline-container-9" class="outline-2">
+<div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9"><span class="section-number-2">9</span> Polymorphism</h2>
 <div class="outline-text-2" id="text-9">
-
-
-</div>
-
-<div id="outline-container-9-1" class="outline-3">
+</div><div id="outline-container-sec-9-1" class="outline-3">
 <h3 id="sec-9-1"><span class="section-number-3">9.1</span> Protocols</h3>
-<div class="outline-text-3" id="text-9-1">
-
 </div>
-
-</div>
-
-<div id="outline-container-9-2" class="outline-3">
+<div id="outline-container-sec-9-2" class="outline-3">
 <h3 id="sec-9-2"><span class="section-number-3">9.2</span> Defining and using Types</h3>
-<div class="outline-text-3" id="text-9-2">
-
 </div>
-
-</div>
-
-<div id="outline-container-9-3" class="outline-3">
+<div id="outline-container-sec-9-3" class="outline-3">
 <h3 id="sec-9-3"><span class="section-number-3">9.3</span> Defining and using Records</h3>
-<div class="outline-text-3" id="text-9-3">
-
 </div>
-
-</div>
-
-<div id="outline-container-9-4" class="outline-3">
+<div id="outline-container-sec-9-4" class="outline-3">
 <h3 id="sec-9-4"><span class="section-number-3">9.4</span> Handling Java with interop</h3>
-<div class="outline-text-3" id="text-9-4">
-
-
 </div>
 </div>
 
-</div>
-
-<div id="outline-container-10" class="outline-2">
+<div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10"><span class="section-number-2">10</span> Intro to Concurency</h2>
-<div class="outline-text-2" id="text-10">
-
-
-
 </div>
 
-</div>
 
-<div id="outline-container-11" class="outline-2">
+<div id="outline-container-sec-11" class="outline-2">
 <h2 id="sec-11"><span class="section-number-2">11</span> Intro to Web Programming with Clojure</h2>
 <div class="outline-text-2" id="text-11">
-
-
-</div>
-
-<div id="outline-container-11-1" class="outline-3">
+</div><div id="outline-container-sec-11-1" class="outline-3">
 <h3 id="sec-11-1"><span class="section-number-3">11.1</span> Ring</h3>
 <div class="outline-text-3" id="text-11-1">
-
+<p>
+HTTP server abstraction
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-2" class="outline-3">
+<div id="outline-container-sec-11-2" class="outline-3">
 <h3 id="sec-11-2"><span class="section-number-3">11.2</span> Compojure</h3>
 <div class="outline-text-3" id="text-11-2">
-
+<p>
+URL Routing specification
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-3" class="outline-3">
+<div id="outline-container-sec-11-3" class="outline-3">
 <h3 id="sec-11-3"><span class="section-number-3">11.3</span> Other foundational libraries</h3>
 <div class="outline-text-3" id="text-11-3">
-
-
-
+<p>
+ring middleware
+html templating
+database drivers and orms
+time functions
+validators
+</p>
+</div>
 </div>
 
-</div>
 
-<div id="outline-container-11-4" class="outline-3">
+
+<div id="outline-container-sec-11-4" class="outline-3">
 <h3 id="sec-11-4"><span class="section-number-3">11.4</span> Web Programming with Clojure (contd)</h3>
 <div class="outline-text-3" id="text-11-4">
-
+<p>
+Programming session
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-5" class="outline-3">
+<div id="outline-container-sec-11-5" class="outline-3">
 <h3 id="sec-11-5"><span class="section-number-3">11.5</span> Restful Services with Clojure</h3>
 <div class="outline-text-3" id="text-11-5">
-
+<p>
+Programming session
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-6" class="outline-3">
+<div id="outline-container-sec-11-6" class="outline-3">
 <h3 id="sec-11-6"><span class="section-number-3">11.6</span> HTML Templating library</h3>
 <div class="outline-text-3" id="text-11-6">
-
+<p>
+Introduction to selmer
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-7" class="outline-3">
+<div id="outline-container-sec-11-7" class="outline-3">
 <h3 id="sec-11-7"><span class="section-number-3">11.7</span> REST API library</h3>
 <div class="outline-text-3" id="text-11-7">
-
+<p>
+Introduction to liberator
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-8" class="outline-3">
+<div id="outline-container-sec-11-8" class="outline-3">
 <h3 id="sec-11-8"><span class="section-number-3">11.8</span> State Management in projects</h3>
 <div class="outline-text-3" id="text-11-8">
-
+<p>
+Mount and Component
+</p>
+</div>
 </div>
 
-</div>
-
-<div id="outline-container-11-9" class="outline-3">
+<div id="outline-container-sec-11-9" class="outline-3">
 <h3 id="sec-11-9"><span class="section-number-3">11.9</span> Clojurescript introduction (optional)</h3>
-<div class="outline-text-3" id="text-11-9">
-
 </div>
 
-</div>
 
-<div id="outline-container-11-10" class="outline-3">
+<div id="outline-container-sec-11-10" class="outline-3">
 <h3 id="sec-11-10"><span class="section-number-3">11.10</span> Deployment</h3>
 <div class="outline-text-3" id="text-11-10">
-
-
-
+<p>
+Deploying as a standalone app
+Deploying to tomcat
+Deploying to wildfly (jboss)
+</p>
 </div>
 </div>
 </div>
 </div>
-
-<div id="postamble">
-<p class="date">Date: 2016-04-25T09:15+0530</p>
-<p class="author">Author: devasia</p>
-<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
-<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
-
+<div id="postamble" class="status">
+<p class="author">Author: Devasia Joseph</p>
+<p class="date">Created: 2016-04-28 Thu 06:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

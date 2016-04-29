@@ -1,0 +1,4 @@
+* Mini project
+* Lazy sequences
+* variadic functions
+* 
