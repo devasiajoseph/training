@@ -36,6 +36,44 @@
    You can have a pipe line of functions through which data is passed through. And this pipe line can be termed as a new function.
    You can create a new function from a set of functions.
 
+   Clojure function composition
+
+   #+BEGIN_SRC clojure
+
+   (def new-fun (comp func1 funct2 funct3....))
+
+   #+END_SRC
+
+   Thread first (not multithreading) approach
+
+   #+BEGIN_SRC clojure
+
+;;(-> value fun1 fun2... )
+   (-> x (+ 1 ) (+ 2) (+ 3))
+;;Expands to : (+ (+ (+ x 1) 2) 3)
+
+   #+END_SRC
+   
+  The thread first (->) macro passes its first argument as the first argument to the next form, then passes the result of that as the first argument to the next form and so on.
+
+   Thread last (not multithreading) approach
+
+   #+BEGIN_SRC clojure
+
+;;   (->> value fun1 fun2... )
+
+(->> x (+ 1 ) (+ 2) (+ 3))
+
+;;Expands to: (+ 3 (+ 2 (+ 1 x)))
+
+
+   #+END_SRC
+
+ 
+
+
+   
+
 ** Pure functions and immutablilty
 
    Pure function is a function which has no side effects. It does not depend on any external entities.
@@ -224,8 +262,12 @@ user=> (refresh)
 * TODO Working with Java Code & Clojure
 
 ** Importing Java packages
+
+
 ** Using static class members
+
 ** Creating objects
+
 ** Calling instance methods
    
 
@@ -530,7 +572,7 @@ Logical operators
 
 
    
- 
+   
 ** Creating our Own Macros
    
    Macro definitions look much like function definitions.
@@ -575,6 +617,8 @@ Logical operators
    
 ** maps
    
+   Key value mapping used in most common data modelling in Clojure ecosystem
+
    {:key value}
    
 ** sets
@@ -600,7 +644,9 @@ You can also get a set of the values in a collection using the set function:
    A logical list
    
 ** Lazy Sequences
+   Lazy sequences are not evaluated until they are called
 
+   For example (map fn list-of-values) returns a lazy sequence and 
    
 ** Operations on sequences (eg map, reduce, filter)
 
@@ -618,11 +664,75 @@ You can also get a set of the values in a collection using the set function:
    - Avoid mutable states
    - Avoid circular dependencies
    
-* Polymorphism
+* Object Oriented concepts
+
+** Multimethods
+   Multimethods give you a direct, flexible way to introduce polymorphism into your code.Using multimethods, you associate a name with multiple implementations by defining a dispatching function, which produces dispatching values that are used to determine which method to use. The dispatching function is like the host at a restaurant. The host will ask you questions like “Do you have a reservation?” and “Party size?” and then seat you accordingly. Similarly, when you call a multimethod, the dispatching function will interrogate the arguments and send them to the right method:
+
+
+   (defmulti full-moon-behavior (fn [were-creature] (:were-type were-creature)))
+   
+   (defmethod full-moon-behavior :wolf
+  [were-creature]
+  (str (:name were-creature) " will howl and murder"))
+
+  (defmethod full-moon-behavior :simmons
+  [were-creature]
+  (str (:name were-creature) " will encourage people and sweat to the oldies"))
+
+  ;; => "Rachel from next door will howl and murder"
+
+
+  (full-moon-behavior {:were-type :wolf
+                     :name "Rachel from next door"})
+  ;; => "Andy the baker will encourage people and sweat to the oldies"
+  
+
 ** Protocols
+
+If you want to declare something like a class you must first declare its interface. This is done using something called a protocol. When learning Clojure you can think of this as the same thing as a Java interface. In fact, instead of using a protocol you can also use a normal Java interface for great interoperability. You create a protocol like this:   
+   
+
+#+BEGIN_SRC clojure
+(defprotocol Greet
+   (sayHello [this]))
+#+END_SRC
+
+A multimethod is just one polymorphic operation, whereas a protocol is a collection of one or more polymorphic operations. Protocol operations are called methods, just like multimethod operations. Unlike multimethods, which perform dispatch on arbitrary values returned by a dispatching function, protocol methods are dispatched based on the type of the first argument
+
+
+#+BEGIN_SRC clojure
+(ns data-psychology)
+(defprotocol Psychodynamics
+  "Plumb the inner depths of your data types"
+  (thoughts [x] "The data type's innermost thoughts")
+  (feelings-about [x] [x y] "Feelings about self or other"))
+#+END_SRC
+   
 ** Defining and using Types
+
+   In clojure you can specify the type hints of the arguments you are going to receive
+   
+   #+BEGIN_SRC clojure
+   (defn foo [^String x o]
+   (.indexOf x o))
+   #+END_SRC
+   
+   
+
 ** Defining and using Records
+
+   
 ** Handling Java with interop
+
+
+Define your java source path in project.clj as a key value pair
+
+:java-source-paths ["src/java"]
+
+Make a package in java source path and create your classes
+
+Java class is imported into the namespace with 
 
 
 Clojure vector, set and list classes implement the java.util.Collection interface and ArrayList, HashSet and LinkedList can take a java.util.Collection constructor argument. So you can simply do:
@@ -660,6 +770,8 @@ user=> (into {} (java.util.HashMap. {:a 1 :b 2}))
 {:b 2, :a 1}
 #+END_SRC
 
+
+
 * Intro to Concurency
 
 
@@ -674,11 +786,13 @@ user=> (into {} (java.util.HashMap. {:a 1 :b 2}))
    
 ** Other foundational libraries
 
-   ring middleware
-   html templating
-   database drivers and orms
-   time functions
-   validators
+   
+*** ring middleware -- for applying middleware functionality in the web application
+
+html templating
+database drivers and orms
+time functions
+validators
 
 
 
@@ -699,11 +813,11 @@ user=> (into {} (java.util.HashMap. {:a 1 :b 2}))
    Mount and Component
    
 ** Clojurescript introduction (optional)
-   
+   (No required) -- 
    
 ** Deployment
-   Deploying as a standalone app
-   Deploying to tomcat
+   Deploying as a standalone app -- lein uberjar
+   Deploying to tomcat -- lein ring uberwar (for ring applications)
    Deploying to wildfly (jboss)
 
 

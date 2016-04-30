@@ -5,7 +5,9 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [clj-time "0.11.0"]
-                 [http-kit "2.1.19"]
+                 ;;[http-kit "2.1.19"]
+                 [ring "1.4.0"]
+                 [compojure "1.5.0"]
                  ]
   :main testapp.core
   )

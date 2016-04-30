@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Clojure Training</title>
-<!-- 2016-04-28 Thu 06:55 -->
+<!-- 2016-04-30 Sat 07:56 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Devasia Joseph" />
@@ -235,12 +235,13 @@ for the JavaScript code in this tag.
 <li><a href="#sec-8-9">8.9. Design Considerations for Clojure programming</a></li>
 </ul>
 </li>
-<li><a href="#sec-9">9. Polymorphism</a>
+<li><a href="#sec-9">9. Object Oriented concepts</a>
 <ul>
-<li><a href="#sec-9-1">9.1. Protocols</a></li>
-<li><a href="#sec-9-2">9.2. Defining and using Types</a></li>
-<li><a href="#sec-9-3">9.3. Defining and using Records</a></li>
-<li><a href="#sec-9-4">9.4. Handling Java with interop</a></li>
+<li><a href="#sec-9-1">9.1. Multimethods</a></li>
+<li><a href="#sec-9-2">9.2. Protocols</a></li>
+<li><a href="#sec-9-3">9.3. Defining and using Types</a></li>
+<li><a href="#sec-9-4">9.4. Defining and using Records</a></li>
+<li><a href="#sec-9-5">9.5. Handling Java with interop</a></li>
 </ul>
 </li>
 <li><a href="#sec-10">10. Intro to Concurency</a></li>
@@ -248,7 +249,11 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#sec-11-1">11.1. Ring</a></li>
 <li><a href="#sec-11-2">11.2. Compojure</a></li>
-<li><a href="#sec-11-3">11.3. Other foundational libraries</a></li>
+<li><a href="#sec-11-3">11.3. Other foundational libraries</a>
+<ul>
+<li><a href="#sec-11-3-1">11.3.1. ring middleware &#x2013; for applying middleware functionality in the web application</a></li>
+</ul>
+</li>
 <li><a href="#sec-11-4">11.4. Web Programming with Clojure (contd)</a></li>
 <li><a href="#sec-11-5">11.5. Restful Services with Clojure</a></li>
 <li><a href="#sec-11-6">11.6. HTML Templating library</a></li>
@@ -332,8 +337,53 @@ Another use case for anonymous functions is using it as a filter for a data set 
 You can have a pipe line of functions through which data is passed through. And this pipe line can be termed as a new function.
 You can create a new function from a set of functions.
 </p>
+
+<p>
+Clojure function composition
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(def new-fun (comp func1 funct2 funct3....))
+</pre>
+</div>
+
+<p>
+Thread first (not multithreading) approach
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">;;(-&gt; value fun1 fun2... )
+   (-&gt; x (+ 1 ) (+ 2) (+ 3))
+;;Expands to : (+ (+ (+ x 1) 2) 3)
+</pre>
+</div>
+
+<p>
+The thread first (-&gt;) macro passes its first argument as the first argument to the next form, then passes the result of that as the first argument to the next form and so on.
+</p>
+
+<p>
+Thread last (not multithreading) approach
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">;;   (-&gt;&gt; value fun1 fun2... )
+
+(-&gt;&gt; x (+ 1 ) (+ 2) (+ 3))
+
+;;Expands to: (+ 3 (+ 2 (+ 1 x)))
+</pre>
 </div>
 </div>
+</div>
+
+
+
+
+
 
 <div id="outline-container-sec-1-5" class="outline-3">
 <h3 id="sec-1-5"><span class="section-number-3">1.5</span> Pure functions and immutablilty</h3>
@@ -718,12 +768,16 @@ user=&gt; (refresh)
 </div><div id="outline-container-sec-5-1" class="outline-3">
 <h3 id="sec-5-1"><span class="section-number-3">5.1</span> Importing Java packages</h3>
 </div>
+
+
 <div id="outline-container-sec-5-2" class="outline-3">
 <h3 id="sec-5-2"><span class="section-number-3">5.2</span> Using static class members</h3>
 </div>
+
 <div id="outline-container-sec-5-3" class="outline-3">
 <h3 id="sec-5-3"><span class="section-number-3">5.3</span> Creating objects</h3>
 </div>
+
 <div id="outline-container-sec-5-4" class="outline-3">
 <h3 id="sec-5-4"><span class="section-number-3">5.4</span> Calling instance methods</h3>
 </div>
@@ -1202,6 +1256,10 @@ Example:
 <h3 id="sec-8-4"><span class="section-number-3">8.4</span> maps</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
+Key value mapping used in most common data modelling in Clojure ecosystem
+</p>
+
+<p>
 {:key value}
 </p>
 </div>
@@ -1249,8 +1307,16 @@ A logical list
 
 <div id="outline-container-sec-8-7" class="outline-3">
 <h3 id="sec-8-7"><span class="section-number-3">8.7</span> Lazy Sequences</h3>
-</div>
+<div class="outline-text-3" id="text-8-7">
+<p>
+Lazy sequences are not evaluated until they are called
+</p>
 
+<p>
+For example (map fn list-of-values) returns a lazy sequence and 
+</p>
+</div>
+</div>
 
 <div id="outline-container-sec-8-8" class="outline-3">
 <h3 id="sec-8-8"><span class="section-number-3">8.8</span> Operations on sequences (eg map, reduce, filter)</h3>
@@ -1288,25 +1354,152 @@ A logical list
 </div>
 
 <div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> Polymorphism</h2>
+<h2 id="sec-9"><span class="section-number-2">9</span> Object Oriented concepts</h2>
 <div class="outline-text-2" id="text-9">
 </div><div id="outline-container-sec-9-1" class="outline-3">
-<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Protocols</h3>
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Multimethods</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+Multimethods give you a direct, flexible way to introduce polymorphism into your code.Using multimethods, you associate a name with multiple implementations by defining a dispatching function, which produces dispatching values that are used to determine which method to use. The dispatching function is like the host at a restaurant. The host will ask you questions like “Do you have a reservation?” and “Party size?” and then seat you accordingly. Similarly, when you call a multimethod, the dispatching function will interrogate the arguments and send them to the right method:
+</p>
+
+
+<p>
+(defmulti full-moon-behavior (fn [were-creature] (:were-type were-creature)))
+</p>
+
+<p>
+ (defmethod full-moon-behavior :wolf
+[were-creature]
+(str (:name were-creature) " will howl and murder"))
+</p>
+
+<p>
+(defmethod full-moon-behavior :simmons
+[were-creature]
+(str (:name were-creature) " will encourage people and sweat to the oldies"))
+</p>
+
+<p>
+;; =&gt; "Rachel from next door will howl and murder"
+</p>
+
+
+<p>
+(full-moon-behavior {:were-type :wolf
+</p>
+<p>
+                   :name "Rachel from next door"})
+;; =&gt; "Andy the baker will encourage people and sweat to the oldies"
+</p>
 </div>
+</div>
+
+
 <div id="outline-container-sec-9-2" class="outline-3">
-<h3 id="sec-9-2"><span class="section-number-3">9.2</span> Defining and using Types</h3>
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> Protocols</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+If you want to declare something like a class you must first declare its interface. This is done using something called a protocol. When learning Clojure you can think of this as the same thing as a Java interface. In fact, instead of using a protocol you can also use a normal Java interface for great interoperability. You create a protocol like this:   
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(defprotocol Greet
+   (sayHello [this]))
+</pre>
 </div>
+
+<p>
+A multimethod is just one polymorphic operation, whereas a protocol is a collection of one or more polymorphic operations. Protocol operations are called methods, just like multimethod operations. Unlike multimethods, which perform dispatch on arbitrary values returned by a dispatching function, protocol methods are dispatched based on the type of the first argument
+</p>
+
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(ns data-psychology)
+(defprotocol Psychodynamics
+  "Plumb the inner depths of your data types"
+  (thoughts [x] "The data type's innermost thoughts")
+  (feelings-about [x] [x y] "Feelings about self or other"))
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-sec-9-3" class="outline-3">
-<h3 id="sec-9-3"><span class="section-number-3">9.3</span> Defining and using Records</h3>
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> Defining and using Types</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+In clojure you can specify the type hints of the arguments you are gonna receive
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">(defn foo [^String x o]
+(.indexOf x o))
+</pre>
 </div>
+</div>
+</div>
+
+
+
 <div id="outline-container-sec-9-4" class="outline-3">
-<h3 id="sec-9-4"><span class="section-number-3">9.4</span> Handling Java with interop</h3>
+<h3 id="sec-9-4"><span class="section-number-3">9.4</span> Defining and using Records</h3>
+</div>
+<div id="outline-container-sec-9-5" class="outline-3">
+<h3 id="sec-9-5"><span class="section-number-3">9.5</span> Handling Java with interop</h3>
+<div class="outline-text-3" id="text-9-5">
+<p>
+Clojure vector, set and list classes implement the java.util.Collection interface and ArrayList, HashSet and LinkedList can take a java.util.Collection constructor argument. So you can simply do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-clojure">user=&gt; (java.util.ArrayList. [1 2 3])
+#&lt;ArrayList [1, 2, 3]&gt;
+user=&gt; (.get (java.util.ArrayList. [1 2 3]) 0)
+1
+</pre>
+</div>
+
+<p>
+Similarly, Clojure map class implements java.util.Map interface and HashMap takes a java.util.Map constructor argument. So:
+</p>
+
+<pre class="example">
+user=&gt; (java.util.HashMap. {"a" 1 "b" 2})
+#&lt;HashMap {b=2, a=1}&gt;
+user=&gt; (.get (java.util.HashMap. {"a" 1 "b" 2}) "a")
+1
+</pre>
+
+<p>
+You can also do the reverse and it is much easier:
+</p>
+
+<pre class="example">
+ser=&gt; (into [] (java.util.ArrayList. [1 2 3]))
+[1 2 3]
+user=&gt; (into #{} (java.util.HashSet. #{1 2 3}))
+#{1 2 3}
+user=&gt; (into '() (java.util.LinkedList. '(1 2 3)))
+(3 2 1)
+user=&gt; (into {} (java.util.HashMap. {:a 1 :b 2}))
+{:b 2, :a 1}
+</pre>
 </div>
 </div>
+</div>
+
+
 
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10"><span class="section-number-2">10</span> Intro to Concurency</h2>
 </div>
+
 
 
 <div id="outline-container-sec-11" class="outline-2">
@@ -1333,13 +1526,16 @@ URL Routing specification
 <div id="outline-container-sec-11-3" class="outline-3">
 <h3 id="sec-11-3"><span class="section-number-3">11.3</span> Other foundational libraries</h3>
 <div class="outline-text-3" id="text-11-3">
+</div><div id="outline-container-sec-11-3-1" class="outline-4">
+<h4 id="sec-11-3-1"><span class="section-number-4">11.3.1</span> ring middleware &#x2013; for applying middleware functionality in the web application</h4>
+<div class="outline-text-4" id="text-11-3-1">
 <p>
-ring middleware
 html templating
 database drivers and orms
 time functions
 validators
 </p>
+</div>
 </div>
 </div>
 
@@ -1392,15 +1588,19 @@ Mount and Component
 
 <div id="outline-container-sec-11-9" class="outline-3">
 <h3 id="sec-11-9"><span class="section-number-3">11.9</span> Clojurescript introduction (optional)</h3>
+<div class="outline-text-3" id="text-11-9">
+<p>
+(No required) &#x2013; 
+</p>
 </div>
-
+</div>
 
 <div id="outline-container-sec-11-10" class="outline-3">
 <h3 id="sec-11-10"><span class="section-number-3">11.10</span> Deployment</h3>
 <div class="outline-text-3" id="text-11-10">
 <p>
-Deploying as a standalone app
-Deploying to tomcat
+Deploying as a standalone app &#x2013; lein uberjar
+Deploying to tomcat &#x2013; lein ring uberwar (for ring applications)
 Deploying to wildfly (jboss)
 </p>
 </div>
@@ -1409,7 +1609,7 @@ Deploying to wildfly (jboss)
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Devasia Joseph</p>
-<p class="date">Created: 2016-04-28 Thu 06:55</p>
+<p class="date">Created: 2016-04-30 Sat 07:56</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
